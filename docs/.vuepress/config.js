@@ -35,6 +35,10 @@ module.exports = {
         title: "Python",
         children: CONST.PythonList,
       },
+      {
+        title: "Vuepress",
+        children: CONST.VuepressList,
+      },
     ],
   },
 };
