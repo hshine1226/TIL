@@ -2,8 +2,8 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "commit": "vuepress build docs && git add build -f && git commit -m 'Subtree commit'",
-    "deploy": "git push origin `git subtree split --prefix build master`:gh-pages --force"
+    "deploy": "git push -f git@github.com:hshine1226/TIL.git master:gh-pages",
+    "predeploy": "yarn build"
   },
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.0.0-rc.1",
