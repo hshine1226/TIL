@@ -39,6 +39,14 @@ module.exports = {
         title: "Vuepress",
         children: CONST.VuepressList,
       },
+      {
+        title: "HTML",
+        children: CONST.Html,
+      },
+      {
+        title: "Flask",
+        children: CONST.Flask,
+      },
     ],
   },
 };
