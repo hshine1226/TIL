@@ -12,3 +12,5 @@ exports.Flask = [
 ];
 
 exports.Html = ["Html/form-tag.md", "Html/input-tag.md"];
+
+exports.Googlecloud = ["Googlecloud/how-to-use.md"];

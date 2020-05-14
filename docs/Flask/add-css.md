@@ -1,6 +1,6 @@
-# Flask에서 CSS 사용하는 방법
+# CSS 사용하는 방법
 
-## 사용법
+## 사용방법
 
 1. root 경로에 static 폴더 생성
 2. static 폴더에 css 폴더 생성

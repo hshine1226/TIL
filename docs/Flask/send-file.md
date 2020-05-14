@@ -1,8 +1,6 @@
 # 파일 다운받는 창 만들기
 
-## send_file
-
-### 사용법
+## 사용방법
 
 ```python
 from flask import send_file

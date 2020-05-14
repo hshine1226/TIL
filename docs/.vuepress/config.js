@@ -47,6 +47,10 @@ module.exports = {
         title: "Flask",
         children: CONST.Flask,
       },
+      {
+        title: "Google Cloud",
+        children: CONST.Googlecloud,
+      },
     ],
   },
 };

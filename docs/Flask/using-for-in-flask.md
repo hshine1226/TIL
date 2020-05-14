@@ -1,6 +1,6 @@
-# Flask에서 for loop 사용하는 법
+# for loop 사용하는 법
 
-## 사용법
+## 사용방법
 
 ```html
 {% for job in jobs %}
