@@ -63,6 +63,10 @@ module.exports = {
         title: "Data structure & Algorithm",
         children: CONST.Datastructure_Algorithm,
       },
+      {
+        title: "English Conversation",
+        children: CONST.EnglishConversation,
+      },
     ],
   },
 };
