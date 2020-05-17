@@ -32,6 +32,10 @@ module.exports = {
     ],
     sidebar: [
       {
+        title: "Markdown",
+        children: CONST.Markdown,
+      },
+      {
         title: "Python",
         children: CONST.PythonList,
       },
@@ -50,6 +54,14 @@ module.exports = {
       {
         title: "Google Cloud",
         children: CONST.Googlecloud,
+      },
+      {
+        title: "Alternatives",
+        children: CONST.Alternatives,
+      },
+      {
+        title: "Data structure & Algorithm",
+        children: CONST.Datastructure_Algorithm,
       },
     ],
   },
