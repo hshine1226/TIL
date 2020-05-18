@@ -1,4 +1,4 @@
-# 알고리즘(Algorithm)이란 무엇인가?
+# 1. Algorithm(알고리즘)이란 무엇인가?
 
 ## 알고리즘(=Algorithm)
 

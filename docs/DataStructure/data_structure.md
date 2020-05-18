@@ -1,4 +1,4 @@
-# [자료구조] 자료구조(Data Structure)란 무엇인가?
+# 1. Data Structure(자료구조)란 무엇인가?
 
 ## 자료구조(= 데이터구조, data structure)
 

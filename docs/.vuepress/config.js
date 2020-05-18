@@ -32,40 +32,40 @@ module.exports = {
     ],
     sidebar: [
       {
-        title: "Markdown",
+        title: "Data structure[자료구조]",
+        children: CONST.DataStructure,
+      },
+      {
+        title: "Algorithm[알고리즘]",
+        children: CONST.Algorithm,
+      },
+      {
+        title: "Markdown[마크다운]",
         children: CONST.Markdown,
       },
       {
-        title: "Terminal",
+        title: "Terminal[터미널]",
         children: CONST.Terminal,
-      },
-      {
-        title: "Python",
-        children: CONST.PythonList,
-      },
-      {
-        title: "Vuepress",
-        children: CONST.VuepressList,
-      },
-      {
-        title: "HTML",
-        children: CONST.Html,
-      },
-      {
-        title: "Flask",
-        children: CONST.Flask,
-      },
-      {
-        title: "Google Cloud",
-        children: CONST.Googlecloud,
       },
       {
         title: "Alternatives",
         children: CONST.Alternatives,
       },
       {
-        title: "Data structure & Algorithm",
-        children: CONST.Datastructure_Algorithm,
+        title: "HTML",
+        children: CONST.Html,
+      },
+      {
+        title: "Vuepress[뷰프레스]",
+        children: CONST.VuepressList,
+      },
+      {
+        title: "Python[파이썬]",
+        children: CONST.PythonList,
+      },
+      {
+        title: "Flask[플라스크]",
+        children: CONST.Flask,
       },
       {
         title: "Node.js",
@@ -76,11 +76,15 @@ module.exports = {
         children: CONST.Babel,
       },
       {
-        title: "Express.js",
+        title: "Express",
         children: CONST.Express,
       },
       {
-        title: "English Conversation",
+        title: "Google Cloud",
+        children: CONST.Googlecloud,
+      },
+      {
+        title: "English Conversation[영어회화]",
         children: CONST.EnglishConversation,
       },
     ],

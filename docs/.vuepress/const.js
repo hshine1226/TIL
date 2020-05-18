@@ -17,10 +17,13 @@ exports.Googlecloud = ["Googlecloud/how-to-use.md"];
 
 exports.Alternatives = ["Alternatives/python-version.md"];
 
-exports.Datastructure_Algorithm = [
-  "Datastructure_Algorithm/datastructure_algorithm.md",
-  "Datastructure_Algorithm/array.md",
-  "Datastructure_Algorithm/queue.md",
+exports.Algorithm = ["Algorithm/algorithm.md"];
+
+exports.DataStructure = [
+  "DataStructure/data_structure.md",
+  "DataStructure/array.md",
+  "DataStructure/queue.md",
+  "DataStructure/stack.md",
 ];
 
 exports.Markdown = ["Markdown/syntax.md"];

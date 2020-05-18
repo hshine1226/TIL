@@ -1,4 +1,4 @@
-# Alternatives를 이용해서 python version 관리하기
+# Python version 관리하기 with Alternatives
 
 ## 파이썬의 실행 위치 확인하기
 
