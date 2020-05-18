@@ -36,6 +36,10 @@ module.exports = {
         children: CONST.Markdown,
       },
       {
+        title: "Terminal",
+        children: CONST.Terminal,
+      },
+      {
         title: "Python",
         children: CONST.PythonList,
       },
@@ -66,6 +70,10 @@ module.exports = {
       {
         title: "Node.js",
         children: CONST.NodeJs,
+      },
+      {
+        title: "Express.js",
+        children: CONST.Express,
       },
       {
         title: "English Conversation",

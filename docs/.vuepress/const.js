@@ -28,3 +28,11 @@ exports.Markdown = ["Markdown/syntax.md"];
 exports.EnglishConversation = ["English_Conversation/000518.md"];
 
 exports.NodeJs = ["NodeJs/whenIUseNodeJs.md"];
+
+exports.Express = [
+  "Express/how_to_install.md",
+  "Express/first_server.md",
+  "Express/handling_routes.md",
+];
+
+exports.Terminal = ["Terminal/use.md"];
