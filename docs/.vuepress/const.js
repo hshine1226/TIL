@@ -33,6 +33,11 @@ exports.Express = [
   "Express/how_to_install.md",
   "Express/first_server.md",
   "Express/handling_routes.md",
+  "Express/nodemon.md",
+  "Express/middleware.md",
+  "Express/good_middleware.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
+
+exports.Babel = ["Babel/babel.md"];

@@ -72,6 +72,10 @@ module.exports = {
         children: CONST.NodeJs,
       },
       {
+        title: "Babel",
+        children: CONST.Babel,
+      },
+      {
         title: "Express.js",
         children: CONST.Express,
       },
