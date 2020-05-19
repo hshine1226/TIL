@@ -64,6 +64,10 @@ module.exports = {
         children: CONST.PythonList,
       },
       {
+        title: "JavaScript[자바스크립트]",
+        children: CONST.JavaScript,
+      },
+      {
         title: "Flask[플라스크]",
         children: CONST.Flask,
       },
