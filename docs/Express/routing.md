@@ -14,7 +14,7 @@ userRouter.get("/password", (req, res) => res.send("user password"));
 
 ## named export
 
-> 여러개 export 가능
+> 여러개 export 가능하고 하나의 변수/클래스 등을 export하는 것이다.
 
 ``` js
 // named export는 하나의 파일에서 여러 변수/클래스 등을 export 가능하다.
@@ -33,7 +33,7 @@ import { userRouter } from "./router";
 
 ## default export
 
-> 하나의 파일 내에서 단 하나만 export 가능
+> 하나의 파일 내에서 단 하나의 변수/class만 export 가능
 
 ``` js
 // default export는 하나의 파일에서 단 하나의 파일만 export 가능하다.
