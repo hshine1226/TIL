@@ -42,6 +42,7 @@ exports.Express = [
   "Express/nodemon.md",
   "Express/middleware.md",
   "Express/good_middleware.md",
+  "Express/routing.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
