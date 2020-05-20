@@ -45,3 +45,74 @@ MVC는 Model, View, Controller의 약자이다. 하나의 애플리케이션(프
 애플리케이션에서 각자의 역할만을 담당해서 처리를 하면 효율적이다. 
 
 서로 분리되어 각자의 역할에 집중할 수 있게 개발을 한다면, 유지보수성, 애플리케이션 확장성, 유연성이 증가하고, 또한 중복 코딩이라는 문제점도 사라진다.
+
+## MVC 패턴을 기반으로 routes 분리
+
+``` js
+// routes.js 라우터들의 경로를 저장하는 분리된 파일
+// Global
+const HOME = "/";
+const JOIN = "/join";
+const LOGIN = "/login";
+const LOGOUT = "/logout";
+const SEARCH = "/search";
+
+// Users
+const USERS = "/users";
+// express는 똑똑하기 때문에 변경되는 주소는 아래와 같이 콜론(:)을 이용해서 선언해준다.
+const USER_DETAIL = "/:id";
+const EDIT_PROFILE = "/:id/edit-profile";
+const CHANGE_PASSWORD = "/:id/change-password";
+
+// Videos
+const VIDEOS = "/videos";
+const UPLOAD = "/upload";
+const VIDEO_DETAIL = "/:id";
+const EDIT_VIDEO = "/:id/edit";
+const DELETE_VIDEO = "/:id/delete";
+
+// Router Object를 아래와 같이 또 다시 한 번 분리해줌으로서 
+// 실수할 확률을 줄여준다.
+const routes = {
+  home: HOME,
+  join: JOIN,
+  login: LOGIN,
+  logout: LOGOUT,
+  search: SEARCH,
+  users: USERS,
+  userDetail: USER_DETAIL,
+  editProfile: EDIT_PROFILE,
+  changePassword: CHANGE_PASSWORD,
+  videos: VIDEOS,
+  upload: UPLOAD,
+  videoDetail: VIDEO_DETAIL,
+  editVideo: EDIT_VIDEO,
+  deleteVideo: DELETE_VIDEO,
+};
+
+// routes를 default로 export 해준다.
+export default routes;
+```
+
+아래와 같이 각각의 라우터에서 route를 설정해준다.
+
+모든 라우터들(globalRouter, userRouter, videoRouter 등...)에서 동일한 방법으로 설정한다.
+
+``` js
+// routers/globalRouter.js
+import express from "express";
+// routes를 설정해둔 routes 파일에서 routes를 불러온다.
+import routes from "../routes";
+
+const globalRouter = express.Router();
+
+// globalRouter.get에서 path를 설정해준다. 
+// path는 불러온 routes에서 routes object에서 불러온다.
+globalRouter.get(routes.home, (req, res) => res.send("Home"));
+globalRouter.get(routes.search, (req,res) => res.send("Search"));
+globalRouter.get(routes.join, (req, res) => res.send("Join"));
+globalRouter.get(routes.login, (req, res) => res.send("Login"));
+globalRouter.get(routes.logout, (req, res) => res.send("Logout"));
+
+export default globalRouter;
+```
