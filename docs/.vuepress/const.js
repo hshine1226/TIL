@@ -29,8 +29,9 @@ exports.DataStructure = [
 exports.Markdown = ["Markdown/syntax.md"];
 
 exports.EnglishConversation = [
-  "English_Conversation/000517.md",
-  "English_Conversation/000518.md",
+  "English_Conversation/200517.md",
+  "English_Conversation/200518.md",
+  "English_Conversation/200520.md",
 ];
 
 exports.NodeJs = ["NodeJs/whenIUseNodeJs.md"];
