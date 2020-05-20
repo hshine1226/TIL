@@ -1,6 +1,6 @@
 # Pug
 
-Nodejs express에서 사용하는 Template Engines은 굉장히 많다. 나는 그중에 가장 많이 사용하는 Pug를 사용할 것이다.  pug는 templates language로서 html을 더 아름답게 만들어준다.
+Nodejs express에서 사용하는 Template Engines은 굉장히 많다. 나는 그중에 가장 많이 사용하는 Pug를 사용할 것이다.  pug는 templates language로서 html을 더 아름답게 만들어준다. Html과 CSS는 논리적인 작업을 할 수가 없다. 하지만 pug로 작업을 한다면 html을 생성하는데 javaScript의 위력을 사용할 수 있다.
 
 ## 설치법
 
@@ -45,5 +45,45 @@ export const editVideo = (req, res) => res.render("editVideo");
 export const deleteVideo = (req, res) => res.render("deleteVideo");
 ```
 
+### layout 만들기
+
+views 폴더 아래에 layouts라는 이름으로 새 폴더를 만들고(폴더명은 상관 없다.) 그곳에 layout 파일들을 만들 것이다.
+
+``` HTML
+doctype html
+html
+    head
+        title | Youtube Clone |
+    body
+        header  
+            h1 YouTube
+        main
+            block content
+        footer
+            span &copy; YouTube
+```
+
+### layout 확장(extension)하기
+
+``` html
+// views/home.pug
+// extends를 통해서 layouts에 있는 main을 확장한다.(복사 붙여넣기와 같은 기능이다.
+extends layouts/main
+
+// content라는 name을 가진 block에 p 태그를 추가한다.
+block content 
+    p Hello on Pug!
+```
+
+
+
 ## 문법
+
+Pug는 들여쓰기를 통해서 단락을 구분한다.
+
+block은 name을 가지고 있다. 아래에서는 block의 name을 content로 지정했다.
+
+``` html
+block content
+```
 
