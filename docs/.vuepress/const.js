@@ -44,6 +44,9 @@ exports.Express = [
   "Express/good_middleware.md",
   "Express/routing.md",
   "Express/mvc_pattern.md",
+  "Express/mvc_controller.md",
+  "Express/pug.md",
+  "Express/partial",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
