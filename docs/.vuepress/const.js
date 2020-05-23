@@ -24,6 +24,7 @@ exports.DataStructure = [
   "DataStructure/array.md",
   "DataStructure/queue.md",
   "DataStructure/stack.md",
+  "DataStructure/linked_list.md",
 ];
 
 exports.Markdown = ["Markdown/syntax.md"];
@@ -48,6 +49,7 @@ exports.Express = [
   "Express/mvc_controller.md",
   "Express/pug.md",
   "Express/partial",
+  "Express/localVariables.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
