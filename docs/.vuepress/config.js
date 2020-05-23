@@ -56,6 +56,10 @@ module.exports = {
         children: CONST.Html,
       },
       {
+        title: "CSS",
+        children: CONST.Css,
+      },
+      {
         title: "Vuepress[뷰프레스]",
         children: CONST.VuepressList,
       },

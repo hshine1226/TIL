@@ -13,6 +13,8 @@ exports.Flask = [
 
 exports.Html = ["Html/form-tag.md", "Html/input-tag.md"];
 
+exports.Css = ["Css/bem.md"];
+
 exports.Googlecloud = ["Googlecloud/how-to-use.md"];
 
 exports.Alternatives = ["Alternatives/python-version.md"];
@@ -50,6 +52,8 @@ exports.Express = [
   "Express/pug.md",
   "Express/partial",
   "Express/localVariables.md",
+  "Express/search_controller.md",
+  "Express/login_html.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
