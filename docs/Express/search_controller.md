@@ -1,5 +1,7 @@
 # Search Controller
 
+## form을 통해 url에 정보 추가하기
+
 Controller를 시작하기 전에 header 파일을 조금 수정해보자.
 
 ``` pug
@@ -23,9 +25,11 @@ form의 action은 routes의 search 경로로 설정하고, method는 get방식�
 
 컨트롤러가 query에 접근하려면 method가 get이어야 한다.
 
+Get method는 url에 정보를 추가해준다.
+
 또한 input으로 넘겨줄 값의 이름이 필요하므로 name을 term으로 지정해준다.
 
-
+## 페이지에서 변수 추가하기
 
 이제 search 페이지를 수정해야한다.
 
@@ -39,6 +43,8 @@ block content
 ```
 
 h3 태그를 추가하고 searchingBy 변수의 값을 보여줄 것이다.
+
+## 컨트롤러에서 query 받아오기
 
 아직은 searchingBy의 값이 없기 때문에 Controller를 수정해야 한다.
 
