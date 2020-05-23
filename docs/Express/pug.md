@@ -49,7 +49,7 @@ export const deleteVideo = (req, res) => res.render("deleteVideo");
 
 views 폴더 아래에 layouts라는 이름으로 새 폴더를 만들고(폴더명은 상관 없다.) 그곳에 layout 파일들을 만들 것이다.
 
-``` HTML
+``` pug
 doctype html
 html
     head
@@ -65,7 +65,7 @@ html
 
 ### layout 확장(extension)하기
 
-``` html
+``` pug
 // views/home.pug
 // extends를 통해서 layouts에 있는 main을 확장한다.(복사 붙여넣기와 같은 기능이다.
 extends layouts/main
@@ -83,7 +83,7 @@ Pug는 들여쓰기를 통해서 단락을 구분한다.
 
 block은 name을 가지고 있다. 아래에서는 block의 name을 content로 지정했다.
 
-``` html
+``` pug
 block content
 ```
 

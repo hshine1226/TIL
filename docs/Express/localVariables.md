@@ -56,7 +56,7 @@ html
 
 title에 각각의 템플릿의 `pageTitle`이 들어오게 해보자. 예를들어 Youtube Home과 같이 표시되는 형식
 
-``` html
+``` pug
 doctype html
 html
   head
