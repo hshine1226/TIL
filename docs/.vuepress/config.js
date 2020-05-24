@@ -64,7 +64,7 @@ module.exports = {
       },
       {
         title: "CSS",
-        children: CONST.Css,
+        children: CONST.CSS,
       },
       {
         title: "Vuepress[뷰프레스]",
