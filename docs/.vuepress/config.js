@@ -11,12 +11,19 @@ module.exports = {
     ["link", { rel: "icon", href: `/images/logo-144.png` }],
     ["link", { rel: "manifest", href: "/manifest.json" }],
   ],
-  plugins: ["@vuepress/back-to-top"][
-    ("@vuepress/pwa",
-    {
-      serviceWorker: true,
-      updatePopup: true,
-    })
+
+  plugins: [
+    ["@vuepress/back-to-top"],
+    ["@vuepress/pwa"],
+    [
+      "vuepress-plugin-mathjax",
+      {
+        target: "svg",
+        macros: {
+          "*": "\\times",
+        },
+      },
+    ],
   ],
 
   themeConfig: {
