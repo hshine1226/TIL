@@ -54,6 +54,7 @@ exports.Express = [
   "Express/localVariables.md",
   "Express/search_controller.md",
   "Express/html_form.md",
+  "Express/mixins.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
