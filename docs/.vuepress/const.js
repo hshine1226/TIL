@@ -61,6 +61,7 @@ exports.MongoDB = [
   "MongoDB/install_mongodb.md",
   "MongoDB/connecting_to_mongodb.md",
   "MongoDB/configuring_dotenv.md",
+  "MongoDB/mongo_model.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
