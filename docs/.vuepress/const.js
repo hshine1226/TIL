@@ -57,6 +57,8 @@ exports.Express = [
   "Express/mixins.md",
 ];
 
+exports.MongoDB = ["MongoDB/install_mongodb.md"];
+
 exports.Terminal = ["Terminal/use.md"];
 
 exports.Babel = ["Babel/babel.md"];
