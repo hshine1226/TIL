@@ -1,4 +1,4 @@
-exports.PythonList = ["Python/oop.md"];
+exports.PythonList = ["Python/oop.md", "Python/list_comprehension.md"];
 
 exports.VuepressList = ["Vuepress/how-to-install.md"];
 
@@ -27,6 +27,7 @@ exports.DataStructure = [
   "DataStructure/queue.md",
   "DataStructure/stack.md",
   "DataStructure/linked_list.md",
+  "DataStructure/hash_table.md",
 ];
 
 exports.Markdown = ["Markdown/syntax.md"];

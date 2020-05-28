@@ -1,4 +1,4 @@
-# 5. Linked List(연결 리스트)란 무엇인가?
+# 5. Linked List(연결 리스트)
 
 ## 1. Linked list(연결 리스트) 구조
 
@@ -22,7 +22,7 @@
 
 - 보통 파이썬에서는 링크드 리스트 구현시, 클래스를 활용한다.
 
-``` python
+```python
 class Node:
     def __init__(self, data, next=None):
         self.data = data
@@ -31,7 +31,7 @@ class Node:
 
 ### Node와 Node 연결하기
 
-``` python
+```python
 node1 = Node(1)
 node2 = Node(2)
 node1.next = node2
@@ -41,7 +41,7 @@ head = node1
 
 ### 데이터 추가하기
 
-``` python
+```python
 class Node:
     def __init__(self, data, next=None):
         self.data = data
@@ -61,7 +61,7 @@ for index in range(2, 10):
 
 ### 데이터 출력하기
 
-``` python
+```python
 node = head
 while node.next:
     print(node.data)
@@ -82,8 +82,6 @@ print(node.data)
 '''
 ```
 
-
-
 ## 4. 링크드 리스트의 장단점
 
 - 장점
@@ -102,7 +100,7 @@ print(node.data)
 <img src="https://www.fun-coding.org/00_Images/linkedlistadd.png" />
 (출처: wikipedia, https://en.wikipedia.org/wiki/Linked_list)
 
-``` python
+```python
 class Node:
     def __init__(self, data, next=None):
         self.data = data
@@ -128,16 +126,16 @@ class NodeMgmt:
 
 ### 2. 링크드 리스트의 특정 노드를 삭제하는 기능
 
-``` python
+```python
 class Node:
     def __init__(self, data, next=None):
         self.data = data
         self.next = next
-    
+
 class NodeMgmt:
     def __init__(self, data):
         self.head = Node(data)
-        
+
     def add(self, data):
         if self.head == '':
             self.head = Node(data)
@@ -146,17 +144,17 @@ class NodeMgmt:
             while node.next:
                 node = node.next
             node.next = Node(data)
-        
+
     def desc(self):
         node = self.head
         while node:
             print (node.data)
             node = node.next
-    
+
     def delete(self, data):
         if self.head.data == '':
             print("Does not exsist")
-            return 
+            return
         if self.head.data == data:
             temp = self.head
             self.head = self.head.next
@@ -181,7 +179,7 @@ class NodeMgmt:
 <img src="https://www.fun-coding.org/00_Images/doublelinkedlist.png" />
 (출처: wikipedia, https://en.wikipedia.org/wiki/Linked_list)
 
-``` python
+```python
 class Node:
     def __init__(self, data, prev=None, next=None):
         self.data = data
@@ -193,7 +191,7 @@ class NodeMgmt:
         # 일반 링크드 리스트와는 달리 tail이 존재한다.
         self.head = Node(data)
         self.tail = self.head
-        
+
     def insert(self, data):
         if self.head == None:
             self.head = Node(data)
@@ -206,7 +204,7 @@ class NodeMgmt:
             node.next = new
             new.prev = node
             self.tail = new
-            
+
     def desc(self):
         node = self.head
         while node:
@@ -214,12 +212,12 @@ class NodeMgmt:
             node = node.next
 ```
 
-### 연습1:  위 코드에서 노드 데이터가 특정 숫자인 노드 앞에 데이터를 추가하는 함수를 만들고, 테스트해보기
+### 연습1: 위 코드에서 노드 데이터가 특정 숫자인 노드 앞에 데이터를 추가하는 함수를 만들고, 테스트해보기
 
 - 더블 링크드 리스트의 tail 에서부터 뒤로 이동하며, 특정 숫자인 노드를 찾는 방식으로 함수를 구현하기
 - 테스트: 임의로 0 ~ 9까지 데이터를 링크드 리스트에 넣어보고, 데이터 값이 2인 노드 앞에 1.5 데이터 값을 가진 노드를 추가해보기
 
-``` python
+```python
 def insert_before(self, data, before_data):
     if self.head == None:
         self.head = Node(data)
@@ -239,7 +237,7 @@ def insert_before(self, data, before_data):
             return True
 ```
 
-``` python
+```python
 # 기존 리스트 순서: 0 1 2 3 4 5 6 7 8 9
 double_linked_list.insert_before(1.5, 2)
 double_linked_list.desc()
@@ -251,7 +249,7 @@ double_linked_list.desc()
 - 더블 링크드 리스트의 head 에서부터 다음으로 이동하며, 특정 숫자인 노드를 찾는 방식으로 함수를 구현하기
 - 테스트: 임의로 0 ~ 9까지 데이터를 링크드 리스트에 넣어보고, 데이터 값이 1인 노드 다음에 1.7 데이터 값을 가진 노드를 추가해보기
 
-``` python
+```python
 def insert_after(self, data, after_data):
     if self.head == None:
         self.head = Node(data)
@@ -271,10 +269,9 @@ def insert_after(self, data, after_data):
                 return True
 ```
 
-``` python
+```python
 # 기존 리스트 순서: 0 1 2 3 4 5 6 7 8 9
 node_mgmt.insert_after(1.5, 1)
 node_mgmt.desc()
 # 결과: 0 1 1.5 2 3 4 5 6 7 8 9
 ```
-
