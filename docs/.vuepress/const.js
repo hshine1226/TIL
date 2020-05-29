@@ -1,4 +1,8 @@
-exports.PythonList = ["Python/oop.md", "Python/list_comprehension.md"];
+exports.PythonList = [
+  "Python/oop.md",
+  "Python/list_comprehension.md",
+  "Python/beautiful_soup.md",
+];
 
 exports.VuepressList = ["Vuepress/how-to-install.md"];
 
