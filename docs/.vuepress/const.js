@@ -2,6 +2,7 @@ exports.PythonList = [
   "Python/oop.md",
   "Python/list_comprehension.md",
   "Python/beautiful_soup.md",
+  "Python/thousands_seperator.md",
 ];
 
 exports.VuepressList = ["Vuepress/how-to-install.md"];
@@ -67,6 +68,7 @@ exports.MongoDB = [
   "MongoDB/connecting_to_mongodb.md",
   "MongoDB/configuring_dotenv.md",
   "MongoDB/mongo_model.md",
+  "MongoDB/uploading_videos.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
