@@ -3,6 +3,7 @@ exports.PythonList = [
   "Python/list_comprehension.md",
   "Python/beautiful_soup.md",
   "Python/thousands_seperator.md",
+  "Python/save_csv.md",
 ];
 
 exports.VuepressList = ["Vuepress/how-to-install.md"];
@@ -33,6 +34,7 @@ exports.DataStructure = [
   "DataStructure/stack.md",
   "DataStructure/linked_list.md",
   "DataStructure/hash_table.md",
+  "DataStructure/tree.md",
 ];
 
 exports.Markdown = ["Markdown/syntax.md"];
