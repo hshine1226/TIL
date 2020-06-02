@@ -36,7 +36,6 @@ exports.DataStructure = [
   "DataStructure/linked_list.md",
   "DataStructure/hash_table.md",
   "DataStructure/tree.md",
-  "DataStructure/edit_video.md",
 ];
 
 exports.Markdown = ["Markdown/syntax.md"];
@@ -74,6 +73,7 @@ exports.MongoDB = [
   "MongoDB/configuring_dotenv.md",
   "MongoDB/mongo_model.md",
   "MongoDB/uploading_videos.md",
+  "MongoDB/edit_video.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
