@@ -4,6 +4,7 @@ exports.PythonList = [
   "Python/beautiful_soup.md",
   "Python/thousands_seperator.md",
   "Python/save_csv.md",
+  "Python/json_handling.md",
 ];
 
 exports.VuepressList = ["Vuepress/how-to-install.md"];
