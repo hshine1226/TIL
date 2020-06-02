@@ -36,6 +36,7 @@ exports.DataStructure = [
   "DataStructure/linked_list.md",
   "DataStructure/hash_table.md",
   "DataStructure/tree.md",
+  "DataStructure/edit_video.md",
 ];
 
 exports.Markdown = ["Markdown/syntax.md"];
