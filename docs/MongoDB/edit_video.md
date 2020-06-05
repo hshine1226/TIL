@@ -1,4 +1,4 @@
-# Video 수정, 삭제
+# Video 수정
 
 ## Video를 ID를 통해 받아오기
 
@@ -8,7 +8,7 @@ Video를 클릭했을 때, Video의 ID를 받아와서 Video의 자세한 정보
 
 `videoController.js`에 Video ID를 위한 Controller인 videoDetail을 수정해보자.
 
-``` js
+```js
 //controllers/videoController.js
 import routes from "../routes";
 import Video from "../models/Video";
@@ -28,22 +28,21 @@ export const videoDetail = async (req, res) => {
 };
 
 // ...
-
 ```
 
-일단 아래와 같이 비디오의 ID를 받아와보자. 
+일단 아래와 같이 비디오의 ID를 받아와보자.
 
 아래의 ID는 이름이 id일때만 성립한다. 왜냐하면 우리가 생성한 Route에 보면 `/:id`를 가지고 있기 때문이다.
 
 `/:id`가 변수(Variable)이라는 것이다.
 
-``` js
+```js
 const {
-    params: { id },
-  } = req;
+  params: { id },
+} = req;
 ```
 
-``` js
+```js
 // ...
 
 // 만약 Controller에서 어떤 Data를 가지고 있다는 것을 표현하고 싶다면, 더블콜론(:)과 이름을 넣으면 된다.
@@ -52,15 +51,13 @@ const VIDEO_DETAIL = "/:id";
 const EDIT_VIDEO = "/:id/edit";
 const DELETE_VIDEO = "/:id/delete";
 
-
 export default routes;
-
 ```
 
 그리고 await function을 사용하기 위해서 async를 먼저 사용하고, 에러가 나면 처리하기 위해서 try, catch 구문을 사용한다. 그리고 마지막으로 받아온 video 변수를 템플릿에 전달한다.
 
-``` js
-// ... 
+```js
+// ...
   try {
     // findById를 통해서 Video를 받아올 것이다. parameter는 ID 이다.
     const video = await Video.findById(id);
@@ -86,27 +83,25 @@ findById 이외의 다양한 Mongoose queries는 여기에서 확인할 수 있�
 4. 조회수
 5. 비디오 설명
 
-``` pug
+```pug
 // views/videoDetail.pug
 extends layouts/main
 
 block content
-    .video__player 
+    .video__player
         video(src=`/${video.fileUrl}`)
-    .video__info    
+    .video__info
         a(href=routes.editVideo) Edit Video
         h5.video__title=video.title
         span.video__views=video.views
-        p.video__description=video.description     
+        p.video__description=video.description
 ```
 
-여기서 video의 src를 적어줄 때, ``video(src=`/${video.fileUrl}`)``과 같이 적어주어야 한다.
+여기서 video의 src를 적어줄 때, `` video(src=`/${video.fileUrl}`) ``과 같이 적어주어야 한다.
 
 왜냐하면 이 파일은 서버에 있는 파일이기 때문이다.
 
 나중에는 이 파일을 우리의 데이터베이스가 아닌 아마존에 맡길 것이다.
-
-
 
 ## Editing a Video
 
@@ -114,7 +109,7 @@ block content
 
 id를 통해서 비디오의 Title, Description을 수정하기 위해서 routes의 `editVideo`를 id를 parameter로 받는 함수로 변경한다.
 
-``` js
+```js
 // routes.js
 
 // ...
@@ -134,14 +129,13 @@ const routes = {
 };
 
 export default routes;
-
 ```
 
 ### Video Router 업데이트
 
-그리고 Router를 업데이트 해준다.  이제 `editVideo`는 String이 아니라 함수아기 때문에 `routes.editVideo()`와 같이 함수를 실행해야 한다. 이때 괄호 안에 id를 넣어서 함수를 호출하면 안된다. 왜냐하면 Express는 Parameter를 원하지 ID를 원하는 것이 아니기 때문이다.
+그리고 Router를 업데이트 해준다. 이제 `editVideo`는 String이 아니라 함수아기 때문에 `routes.editVideo()`와 같이 함수를 실행해야 한다. 이때 괄호 안에 id를 넣어서 함수를 호출하면 안된다. 왜냐하면 Express는 Parameter를 원하지 ID를 원하는 것이 아니기 때문이다.
 
-``` js
+```js
 // routers/videoRouter.js
 
 // ...
@@ -157,12 +151,12 @@ export default videoRouter;
 
 다음으로는 `videoController.js`에서 비디오를 업데이트 해볼 것이다.
 
-``` js
+```js
 // controllers/videoController.js
 import routes from "../routes";
 import Video from "../models/Video";
 
-// ... 
+// ...
 
 export const getEditVideo = async (req, res) => {
   // 어떤 비디오를 수정하는지 알기 위해서 video의 id를 받아온다.
@@ -198,11 +192,11 @@ export const postEditVideo = async (req, res) => {
 
 일단 `editVideo`에서는 비디오 수정을 위해서 get, post가 필요하기 때문에 `getEditVideo`, `postEditVideo`로 분리해준다.
 
-그리고 video를 수정할 때 어떤 비디오를 수정하는지를 알아야 하기 때문에 params에서 id를 받아온다. 
+그리고 video를 수정할 때 어떤 비디오를 수정하는지를 알아야 하기 때문에 params에서 id를 받아온다.
 
 edit video 화면에서 video title과 video description을 그냥 빈칸이 아닌 수정하기 전의 값으로 띄워주기 위해서, 아래와 같이 Controller에서 보낸 video object를 사용한다.
 
-``` pug
+```pug
 // views/editVideo.pug
 extends layouts/main
 
@@ -227,9 +221,9 @@ block content
 
 `findOneAndUpdate( {_id: id}, { title, description } )`에서 첫번째 parameter는 conditions, 두 번째 Parameter는 update이다. 즉 첫번째 parameter에 어떤 조건으로 찾을지를 정하고, 그 찾은 값에서 어떤 것을 업데이트 할지 두번째 parameter에 적어주면 된다.
 
-여기서 첫번째 parameter에 `_id`와 같이 적은 이유는 Video 모델의 Element를 console.log했을 때 id는 _id로 적혀있기 때문이다.
+여기서 첫번째 parameter에 `_id`와 같이 적은 이유는 Video 모델의 Element를 console.log했을 때 id는 \_id로 적혀있기 때문이다.
 
-``` js
+```js
 export const postEditVideo = async (req, res) => {
   const {
     params: { id },
@@ -243,4 +237,3 @@ export const postEditVideo = async (req, res) => {
     res.redirect(routes.home);
   }
 ```
-

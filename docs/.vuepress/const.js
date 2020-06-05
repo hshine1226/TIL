@@ -74,10 +74,13 @@ exports.MongoDB = [
   "MongoDB/mongo_model.md",
   "MongoDB/uploading_videos.md",
   "MongoDB/edit_video.md",
+  "MongoDB/deleting_videos.md",
+  "MongoDB/searching_videos.md",
+  "MongoDB/regular_expression.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
 
 exports.Babel = ["Babel/babel.md"];
 
-exports.JavaScript = ["JavaScript/arrow_function.md"];
+exports.JavaScript = ["JavaScript/arrow_function.md", "JavaScript/webpack.md"];
