@@ -45,6 +45,7 @@ exports.EnglishConversation = [
   "English_Conversation/200518.md",
   "English_Conversation/200520.md",
   "English_Conversation/200531.md",
+  "English_Conversation/200606.md",
 ];
 
 exports.NodeJs = ["NodeJs/whenIUseNodeJs.md"];
