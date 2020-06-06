@@ -104,7 +104,7 @@ const config = {
             loader: "postcss-loader",
             options: {
               // PostCSS 플러그인으로 autoprefixer를 사용한다.
-              plugin() {
+              plugins() {
                 return [autoprefixer({ browsers: "cover 99.5%" })];
               },
             },
@@ -201,4 +201,134 @@ options: {
         return [autoprefixer({ browsers: "cover 99.5%" })];
     },
 ```
+
+
+
+## ES6 with Webpack
+
+Webpack을 통해 ES6를 사용해 볼 것이다. 아래와 같이 ES6 문법을 작성한다.
+
+``` JS
+// assets/js/main.js
+
+import "../scss/styles.scss";
+
+const something = async () => {
+  console.log("something");
+};
+```
+
+그리고 이것을 Webpack에서 modern JavaScript로 바꾸어 주어야 한다. 아래와 같이 새로운 rule을 하나 추가한다. 
+
+``` js
+// webpack.config.js
+rules: [
+      {
+        test: /\.(js)$/,
+        use: [
+          {
+            loader: "babel-loader",
+          },
+        ],
+      },
+```
+
+여기서 사용하는 loader는 `babel-loader`이다.
+
+### babel-loader 설치
+
+``` shell
+npm install babel-loader
+```
+
+### Scripts 수정
+
+그리고 스크립트에서 -w 옵션을 추가해서 `dev:assets`가 파일들을 지켜보게 할 것이다.
+
+watch를 추가해주면 css를 수정할 때마다 webpack을 재시작하는 귀찮은 일을 하지 않아도 된다.
+
+하지만 config.js 파일을 수정 했을 때는 재시작 해줘야 한다.
+
+``` json
+// package.json
+
+"scripts": {
+    "dev:server": "nodemon --exec babel-node init.js",
+    // 아래와 같이 마지막에 -w를 추가하면 된다.
+    "dev:assets": "WEBPACK_ENV=development webpack -w",
+    "build:assets": "WEBPACK_ENV=production webpack"
+  },
+```
+
+
+
+### View  수정
+
+아래와 같이 css와 script 파일을 추가해준다.
+
+``` pug
+doctype html
+html
+  head
+    script(src="https://kit.fontawesome.com/142b9259dc.js", crossorigin="anonymous")
+    title #{pageTitle} #{siteName}
+    // static폴더의 styles.css를 추가해준다.
+    link(rel="stylesheet", href="static/styles.css")
+  body
+    include ../partials/header
+    main
+      block content
+    include ../partials/footer
+    // script도 추가해준다.
+    script(src="/static/main.js")
+```
+
+
+
+### app.js 수정
+
+그리고 우리는 서버에게 알려줘야 한다. 왜냐하면 우리는 지금 `/static`이라는 route가 존재하지 않기 때문에 app.js 파일에서 추가시켜줘야 한다.
+
+아래와 같이 누군가 `/static`으로 가려고 하면, static 폴더로 가라고 지정해준다.
+
+``` js
+// app.js
+// ...
+
+app.use("/uploads", express.static("uploads"));
+// 아래와 같이 static route를 추가해주어야 한다.
+app.use("/static", express.static("static"));
+
+// ...
+```
+
+
+
+### polyfill 설치
+
+`npm run dev:server`, `npm run dev:assets`를 통해 실행해보면 콘솔 창에 `regeneratorRuuntime`이 정의되지 않았다고 오류가 뜬다. 이것은 브라우저가 async를 어떻게 처리해야 하는지 모르기 때문이다.
+
+따라서 우리는 polifill이라는 것을 설치해주어야 한다. 우리는 `babel-polyfill`을 설치할 것이다.
+
+polyfill은 브라우저가 없는 부분을 메워주는 자바스크립트 파일 같은 것이다.
+
+#### 설치법
+
+``` shell
+npm install @babel/polyfill
+```
+
+#### webpack.config.js 수정
+
+entry를 array로 만든 다음 `@babel/polyfill`을 추가한다.
+
+``` js
+const config = {
+  entry: ["@babel/polyfill", ENTRY_FILE],
+  // ...
+```
+
+
+
+
 
