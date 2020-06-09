@@ -330,5 +330,16 @@ const config = {
 
 
 
+## Ignore Nodemon
 
+매번 CSS를 저장할 때 마다 Server를 재시작하는게 비효율적이다.
+
+그래서 우리는 nodemon을 ignore 시킬 것이다.
+
+Nodemon을 무시하는 방법은 아래와 같이 `--ignore 'scss'`를 추가한다.
+
+``` js
+// package.json
+"dev:server": "nodemon --exec babel-node init.js --ignore 'scss'",
+```
 
