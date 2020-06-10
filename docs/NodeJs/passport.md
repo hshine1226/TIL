@@ -99,3 +99,392 @@ Passport에서 Stategy는 로그인 하는 방식을 의미하는 말로서 예�
 import "./models/User"
 ```
 
+
+
+### serializeUser, deserializeUser
+
+>  serializeUser
+>
+> '어떤 정보를 쿠키에게 주느냐', '쿠키가 어떤 정보를 가질 수 있느냐'
+>
+> '어떤 field가 쿠키에 포함될 것인지를 알려주는 역할을 함'
+
+>deserializeUser
+>
+>'어느 사용자인지 어떻게 찾는가', '쿠키의 정보를 어떻게 사용자로 전환하는가'
+
+쿠키에는 너무 많은 정보를 주면 안된다. 쿠키는 아주 작기 때문에 민감한 정보를 담으면 보안에 취약하다.
+
+passport-local-mongoose 덕분에 아래와 같이 shortcut을 사용할 수 있다.
+
+``` js
+// passport.js
+
+// ...
+
+// 오직 user.id만 담아서 보내는 것
+passport.serializeUser(User.serializeUser());
+// deserializeUser
+passport.deserializeUser(User.deserializeUser());
+```
+
+
+
+``` js
+// controllers/userController.js
+import User from "../models/User";
+
+// ...
+
+export const postJoin = async (req, res) => {
+  console.log(req.body);
+  const {
+    body: { name, email, password, password2 },
+  } = req;
+  if (password !== password2) {
+    res.status(400); // 잘못된 요청
+    res.render("join", { pageTitle: "Join" });
+  } else {
+    // Register User
+    try {
+      // 계정 생성
+      const user = await User({
+        name,
+        email,
+      });
+      // 계정 가입
+      await User.register(user, password);
+    } catch (error) {
+      console.log(error);
+    }
+    res.redirect(routes.home);
+  }
+};
+
+
+```
+
+
+
+postJoin을 미들웨어로 만들것이다.
+
+``` js
+// routers/globalRouter.js
+globalRouter.post(routes.join, postJoin, postLogin);
+```
+
+``` js
+// controllers/userController.js
+
+export const postJoin = async (req, res, next) => {
+  console.log(req.body);
+  const {
+    body: { name, email, password, password2 },
+  } = req;
+  if (password !== password2) {
+    res.status(400); // 잘못된 요청
+    res.render("join", { pageTitle: "Join" });
+  } else {
+    try {
+      const user = await User({
+        name,
+        email,
+      });
+      await User.register(user, password);
+      // 미들웨어 수행후 다음으로 넘어가기
+      next();
+    } catch (error) {
+      console.log(error);
+      res.redirect(routes.home);
+    }
+    // To Do: Log user in
+  }
+};
+
+// local Strategy로 passport 인증
+export const postLogin = passport.authenticate("local", {
+  // 로그인에 실패하면 로그인화면으로
+  // 성공하면 홈으로 redirect 해준다.
+  failureRedirect: routes.login,
+  successRedirect: routes.home,
+});
+
+```
+
+``` js
+// middlewares.js
+export const localsMiddleware = (req, res, next) => {
+  res.locals.siteName = "YouTube";
+  res.locals.routes = routes;
+  // passport가 사용자를 로그인 시킬 때 user가 담긴 object를 req에 올려준다.
+  // 따라서 이를 템플릿에서 사용하기 위해 미들웨어에서 아래와 같이 user를 저장한다.
+  res.locals.user = req.user || null;
+  next();
+};
+```
+
+passport를 import하고, use한다.
+
+``` js
+// app.js
+
+import passport from "passport";
+// ...
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// ...
+```
+
+### session
+
+`npm install express-session`으로 session을 설치한다. 
+
+``` js
+// app.js
+
+import session from "express-session"
+
+app.use(session({
+    // secret은 무작위 문자열로서 session ID를 암호화 한다.
+    secret: process.env.COOKIE_SECRET,
+    resave: true,
+    saveUninitialized: false,
+}));
+```
+
+[randomkeygen](https://randomkeygen.com/)에서 random한 무작위의 key를 얻을 수 있다.
+
+``` .env
+// .env
+// randomkeygen에서 얻은 key값 저장
+COOKIE_SECRET = "VspO%ub8mfs-0$&>9*6~tKH<F![[Z~""
+
+```
+
+`header.pug`에서 user.isAuthentication이 없어졌으므로 그냥 user로 변경해준다.
+
+``` pug
+// ...
+.header__column
+			ul
+				if !user
+					// ...
+```
+
+로그인이 잘 되는지 확인해보면 로그인과 쿠키가 정상적으로 되는 것을 볼 수 있다.
+
+하지만, 페이지를 새로고침 해보면 쿠키가 없어지는 것을 볼 수 있다. 
+
+이것을 mongoDB를 이용해서 해결해보자.
+
+## MongoDB를 이용해서 cookie 저장하기
+
+`npm install connect-mongo`로 connect-mongo를 설치한다. 
+
+Session을 MongoDB에 저장해서 브라우저가 새로고침 되어도 세션이 유지되게 한다.
+
+``` js
+// app.js
+import mongoose from "mongoose";
+import MongoStore from "connect-mongo";
+
+const CookieStore = MongoStore(session);
+
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    store: new CookieStore({ mongooseConnection: mongoose.connection }),
+  })
+);
+```
+
+## Middleware를 통해 Routes의 출입을 제한하기
+
+### Middleware 생성
+
+``` js
+// middlewares.js
+// 로그인한 사용자라면 홈으로 Redirect 해준다.
+export const onlyPublic = (req, res, next) => {
+  if (req.user) {
+    res.redirect(routes.home);
+  } else {
+    next();
+  }
+};
+
+// 로그인하지 않은 사용자라면 홈으로 Redirect 해준다.
+export const onlyPrivate = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect(routes.home);
+  }
+};
+
+```
+
+### Router 설정
+
+위에서 만든 미들웨어를 통해 Router에서 해당하는 경로에 대해서 출입을 제한한다.
+
+예를들어서 로그인한 유저는 Join, Login에 접속하지 못하게 하는 것, 로그인하지 않은 유저는 프로필 수정, 패스워드 변경을 제한하는 것 등이 있다.
+
+``` js
+// routers/globalRouter.js
+import { onlyPublic, onlyPrivate } from "../middlewares";
+
+globalRouter.get(routes.join, onlyPublic, getJoin);
+globalRouter.post(routes.join, onlyPublic, postJoin, postLogin);
+globalRouter.get(routes.logout, onlyPrivate, logout);
+```
+
+``` js
+// routers/userRouter.js
+import { onlyPrivate } from "../middlewares";
+
+userRouter.get(routes.editProfile, onlyPrivate, editProfile);
+userRouter.get(routes.changePassword, onlyPrivate, changePassword);
+```
+
+``` js
+// routers/globalRouter.js
+import { uploadVideo, onlyPrivate } from "../middlewares";
+
+// Upload
+videoRouter.get(routes.upload, onlyPrivate, getUpload);
+videoRouter.post(routes.upload, onlyPrivate, uploadVideo, postUpload);
+
+// Edit Video
+videoRouter.get(routes.editVideo(), onlyPrivate, getEditVideo);
+videoRouter.post(routes.editVideo(), onlyPrivate, postEditVideo);
+
+// Delete Video
+videoRouter.get(routes.deleteVideo(), onlyPrivate, deleteVideo);
+```
+
+## Logout
+
+로그아웃은 정말 간단하다. 아래와 같이 `req.logout()`만 추가해주면 passport가 알아서 처리해준다.
+
+``` js
+export const logout = (req, res) => {
+  req.logout();
+  res.redirect(routes.home);
+};
+```
+
+
+
+## Github Login
+
+passport strategies 중에서 passport-github를 사용해 github 로그인을 구현할 것이다.
+
+`npm install passport-github`로 설치 후에 먼저 [developer application](https://github.com/settings/applications/new)에서 새로운 Application을 생성해야 한다. 이때 callback URL은 `http://localhost:4000/auth/github/callback`과 같이 작성한다. 이것은 변경해도 상관 없다.
+
+### 환경변수 추가
+
+Application 생성완료되면,  Client ID와 Client Secret는 다른사람과는 절대 공유하면 안되기 때문에, .env 환경변수 파일에 Client ID와 Client Secret을 선언했다.
+
+``` .env
+// .env
+GITHUB_CLIENT_ID = "88d41a39a8e6af4103ff"
+GITHUB_CLIENT_SECRET = "35f3bc886295a7fada74a386a2f7a4b3c303f460"
+```
+
+### Passport Strategy 추가
+
+위에서 설정한 환경변수를 아래와 같이 새로운 전략을 만드는데 사용한다.
+
+``` js
+// passport.js
+passport.use(
+  new GithubStrategy(
+    {
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      // routes에서 설정한 callback 경로를 지정해준다.
+      callbackURL: `http://localhost:4000${routes.githubCallback}`,
+    },
+    githubLoginCallback
+  )
+);
+```
+
+그리고 사용자가 깃허브에서 돌아왔을 때 실행되는 Callback 함수를 controller에 정의해보자.
+
+함수 정의 방법은 [passport-github](http://www.passportjs.org/packages/passport-github/)에서 자세히 볼 수 있다.
+
+``` js
+// controllers/userController.js
+
+// 로그인 방식으로 github를 사용하겠다는 설정
+export const githubLogin = passport.authenticate("github");
+
+export const githubLoginCallback = (accessToken, refreshToken, profile, cb) => {
+  console.log(accessToken, refreshToken, profile, cb);
+};
+```
+
+### Routes
+
+github와 github callback의 경로를 아래와 같이 설정해준다.
+
+``` js
+// routes.js
+
+// Github
+const GITHUB = "/auth/github";
+const GITHUB_CALLBACK = "/auth/github/callback";
+
+// Router Object
+const routes = {
+  // ...
+  github: GITHUB,
+  githubCallback: GITHUB_CALLBACK,
+};
+
+export default routes;
+```
+
+``` js
+// routes/globalRouter.js
+globalRouter.get(routes.github, githubLogin);
+
+globalRouter.get(
+  // 누군가 /auth/github/callback으로 간다면 아래와 같이 passport.authenticate를 실행한다.
+  routes.githubCallback,
+  passport.authenticate("github", { failureRedirect: "/login" }),
+  postGithubLogin
+);
+```
+
+``` js
+// controllers/userController.js
+
+export const postGithubLogin = (req, res) => {
+  res.send(routes.home);
+};
+```
+
+### Template
+
+``` pug
+.social-login
+    // BEM 방법론
+    button.social-login--github
+    	// github Routes를 설정한다.
+        a(href=routes.github)
+            span 
+                i.fab.fa-github
+            |  Continue with Github
+    button.social-login--facebook
+        span 
+            i.fab.fa-facebook
+        |  Continue with Facebook
+```
+
