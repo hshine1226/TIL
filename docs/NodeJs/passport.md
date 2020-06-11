@@ -2,9 +2,9 @@
 
 ## Passport
 
-Passport는 Node.js를 위한 Authentication Middleware이다. 
+Passport는 Node.js를 위한 Authentication Middleware이다.
 
-우리는 사용자 인증을 구현하기 위해서 Passport라는 미들웨어를 사용할 것이다. 
+우리는 사용자 인증을 구현하기 위해서 Passport라는 미들웨어를 사용할 것이다.
 
 인증(Authentication)이란 브라우저 상에서 쿠키를 설정해주면 그 쿠키를 통해서 사용자 ID 등을 알 수 있고, 이를 통해 Passport까 브라우저에서 자동으로 쿠키를 가져와서 인증이 완료된 User Object를 Controller에 넘겨주는 것이다.
 
@@ -12,25 +12,21 @@ Passport는 Node.js를 위한 Authentication Middleware이다.
 
 > 쿠키: 쿠키는 우리가 브라우저에 저장할 수 있는 것들이다. 이 정보에는 모든 요청(Request)에 대해서 백엔드로 전송될 정보들이 담겨져 있다.
 
-Passport가 하는 일은 쿠키의 생성, 저장을 한 이후에 해당 쿠키를 유저에게 보내주는 역할을 한다. 실제 과정은 이것보다 훨씬 더 복잡하지만 그 부분에 대해서는 Passport가 알아서 해주니 너무 걱정하지 않아도 된다. 
+Passport가 하는 일은 쿠키의 생성, 저장을 한 이후에 해당 쿠키를 유저에게 보내주는 역할을 한다. 실제 과정은 이것보다 훨씬 더 복잡하지만 그 부분에 대해서는 Passport가 알아서 해주니 너무 걱정하지 않아도 된다.
 
 Passport에서 코드 구현은 아래에서 보는 것과 같이 그리 복잡하지 않다.
 
-``` js
-app.post('/login',
-  passport.authenticate('local'),
-  function(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    res.redirect('/users/' + req.user.username);
-  });
+```js
+app.post("/login", passport.authenticate("local"), function(req, res) {
+  // If this function gets called, authentication was successful.
+  // `req.user` contains the authenticated user.
+  res.redirect("/users/" + req.user.username);
+});
 ```
 
 누군가 `/login`으로 post를 하면 `passport.authenticate`라는 것을 호출한다. 그리고 `'local'`이라는 것은 Strategy(전략)이라고 하는 것이다. 우리의 경우에는 'facebook,', 'github' 등과 같은 전략을 사용할 수 있다.
 
-그리고 인증이 되고난 후에는 function이 실행된다.  그리고 function안을 살펴보면 `req.user`라는 것을 볼 수 있다. 보다시피 Passport는 직접 `req.user`를 만들어준다. 이것이 바로 현재 로그인한 사용자가 된다.
-
-
+그리고 인증이 되고난 후에는 function이 실행된다. 그리고 function안을 살펴보면 `req.user`라는 것을 볼 수 있다. 보다시피 Passport는 직접 `req.user`를 만들어준다. 이것이 바로 현재 로그인한 사용자가 된다.
 
 ## 모듈
 
@@ -38,13 +34,11 @@ app.post('/login',
 
 passport-local-mongoose 모듈은 사용자 기능(User functionality)을 추가해주는 모듈이다. 우리의 User model을 위해서 사용될 것이다. 기본적인 사용자 인증 기능(패스워드 생성, 변경, 확인 암호화 등)
 
-
-
 ## LocalAuthentication
 
 name, email, avatarUrl 등을 가지는 User라는 Model을 아래와 같이 생성한다.
 
-``` js
+```js
 // models/User.js
 
 import mongoose from "mongoose";
@@ -64,16 +58,15 @@ userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 const model = mongoose.Model("User", userSchema);
 
 export default model;
-
 ```
 
 ### Passport-Local Mongoose
 
-[Passport-Local Mongoose](https://github.com/saintedlama/passport-local-mongoose)는 패스워드 설정, 확인 등을 자동적으로 해주는 Mongoose Plugin이다. Document를 참고하면 setPassword, changPassword, authenticate 등 여러 인스턴스 메소드들을 확인할 수 있다. 그리고 Main Options 항목에서 여러가지 옵션들을 확인할 수 있는데, 그중 우리는 usernameField라는 옵션을 사용할 것이다. 이 옵션을 사용하게 되면 username으로 field를 명시한다. 여기서 username은 내 이름이 될 수도 있고, 이메일이 될 수도 있다. 아무튼 passportLocalMongoose에게 어떤 Field를 username으로 사용할 것인지를 알려줘야한다. 우리는 일단 email을 username으로 사용할 것이다. 
+[Passport-Local Mongoose](https://github.com/saintedlama/passport-local-mongoose)는 패스워드 설정, 확인 등을 자동적으로 해주는 Mongoose Plugin이다. Document를 참고하면 setPassword, changPassword, authenticate 등 여러 인스턴스 메소드들을 확인할 수 있다. 그리고 Main Options 항목에서 여러가지 옵션들을 확인할 수 있는데, 그중 우리는 usernameField라는 옵션을 사용할 것이다. 이 옵션을 사용하게 되면 username으로 field를 명시한다. 여기서 username은 내 이름이 될 수도 있고, 이메일이 될 수도 있다. 아무튼 passportLocalMongoose에게 어떤 Field를 username으로 사용할 것인지를 알려줘야한다. 우리는 일단 email을 username으로 사용할 것이다.
 
 > 설치: `npm install passport-local-mongoose`
 
-``` js
+```js
 // passport.js
 
 import passport from "passport";
@@ -91,33 +84,29 @@ passport.use(User.createStrategy());
 
 Passport에서 Stategy는 로그인 하는 방식을 의미하는 말로서 예를들어 페이스북으로 로그인하기, 깃허브로 로그인하기, username과 password로 로그인하기 등을 말한다.
 
-
-
-``` js
+```js
 // init.js
 
-import "./models/User"
+import "./models/User";
 ```
-
-
 
 ### serializeUser, deserializeUser
 
->  serializeUser
+> serializeUser
 >
 > '어떤 정보를 쿠키에게 주느냐', '쿠키가 어떤 정보를 가질 수 있느냐'
 >
 > '어떤 field가 쿠키에 포함될 것인지를 알려주는 역할을 함'
 
->deserializeUser
+> deserializeUser
 >
->'어느 사용자인지 어떻게 찾는가', '쿠키의 정보를 어떻게 사용자로 전환하는가'
+> '어느 사용자인지 어떻게 찾는가', '쿠키의 정보를 어떻게 사용자로 전환하는가'
 
 쿠키에는 너무 많은 정보를 주면 안된다. 쿠키는 아주 작기 때문에 민감한 정보를 담으면 보안에 취약하다.
 
 passport-local-mongoose 덕분에 아래와 같이 shortcut을 사용할 수 있다.
 
-``` js
+```js
 // passport.js
 
 // ...
@@ -128,9 +117,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 ```
 
-
-
-``` js
+```js
 // controllers/userController.js
 import User from "../models/User";
 
@@ -160,20 +147,16 @@ export const postJoin = async (req, res) => {
     res.redirect(routes.home);
   }
 };
-
-
 ```
-
-
 
 postJoin을 미들웨어로 만들것이다.
 
-``` js
+```js
 // routers/globalRouter.js
 globalRouter.post(routes.join, postJoin, postLogin);
 ```
 
-``` js
+```js
 // controllers/userController.js
 
 export const postJoin = async (req, res, next) => {
@@ -208,10 +191,9 @@ export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
   successRedirect: routes.home,
 });
-
 ```
 
-``` js
+```js
 // middlewares.js
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "YouTube";
@@ -225,7 +207,7 @@ export const localsMiddleware = (req, res, next) => {
 
 passport를 import하고, use한다.
 
-``` js
+```js
 // app.js
 
 import passport from "passport";
@@ -239,24 +221,26 @@ app.use(passport.session());
 
 ### session
 
-`npm install express-session`으로 session을 설치한다. 
+`npm install express-session`으로 session을 설치한다.
 
-``` js
+```js
 // app.js
 
-import session from "express-session"
+import session from "express-session";
 
-app.use(session({
+app.use(
+  session({
     // secret은 무작위 문자열로서 session ID를 암호화 한다.
     secret: process.env.COOKIE_SECRET,
     resave: true,
     saveUninitialized: false,
-}));
+  })
+);
 ```
 
 [randomkeygen](https://randomkeygen.com/)에서 random한 무작위의 key를 얻을 수 있다.
 
-``` .env
+```
 // .env
 // randomkeygen에서 얻은 key값 저장
 COOKIE_SECRET = "VspO%ub8mfs-0$&>9*6~tKH<F![[Z~""
@@ -265,7 +249,7 @@ COOKIE_SECRET = "VspO%ub8mfs-0$&>9*6~tKH<F![[Z~""
 
 `header.pug`에서 user.isAuthentication이 없어졌으므로 그냥 user로 변경해준다.
 
-``` pug
+```pug
 // ...
 .header__column
 			ul
@@ -275,17 +259,17 @@ COOKIE_SECRET = "VspO%ub8mfs-0$&>9*6~tKH<F![[Z~""
 
 로그인이 잘 되는지 확인해보면 로그인과 쿠키가 정상적으로 되는 것을 볼 수 있다.
 
-하지만, 페이지를 새로고침 해보면 쿠키가 없어지는 것을 볼 수 있다. 
+하지만, 페이지를 새로고침 해보면 쿠키가 없어지는 것을 볼 수 있다.
 
 이것을 mongoDB를 이용해서 해결해보자.
 
 ## MongoDB를 이용해서 cookie 저장하기
 
-`npm install connect-mongo`로 connect-mongo를 설치한다. 
+`npm install connect-mongo`로 connect-mongo를 설치한다.
 
 Session을 MongoDB에 저장해서 브라우저가 새로고침 되어도 세션이 유지되게 한다.
 
-``` js
+```js
 // app.js
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
@@ -306,7 +290,7 @@ app.use(
 
 ### Middleware 생성
 
-``` js
+```js
 // middlewares.js
 // 로그인한 사용자라면 홈으로 Redirect 해준다.
 export const onlyPublic = (req, res, next) => {
@@ -325,7 +309,6 @@ export const onlyPrivate = (req, res, next) => {
     res.redirect(routes.home);
   }
 };
-
 ```
 
 ### Router 설정
@@ -334,7 +317,7 @@ export const onlyPrivate = (req, res, next) => {
 
 예를들어서 로그인한 유저는 Join, Login에 접속하지 못하게 하는 것, 로그인하지 않은 유저는 프로필 수정, 패스워드 변경을 제한하는 것 등이 있다.
 
-``` js
+```js
 // routers/globalRouter.js
 import { onlyPublic, onlyPrivate } from "../middlewares";
 
@@ -343,7 +326,7 @@ globalRouter.post(routes.join, onlyPublic, postJoin, postLogin);
 globalRouter.get(routes.logout, onlyPrivate, logout);
 ```
 
-``` js
+```js
 // routers/userRouter.js
 import { onlyPrivate } from "../middlewares";
 
@@ -351,7 +334,7 @@ userRouter.get(routes.editProfile, onlyPrivate, editProfile);
 userRouter.get(routes.changePassword, onlyPrivate, changePassword);
 ```
 
-``` js
+```js
 // routers/globalRouter.js
 import { uploadVideo, onlyPrivate } from "../middlewares";
 
@@ -371,14 +354,12 @@ videoRouter.get(routes.deleteVideo(), onlyPrivate, deleteVideo);
 
 로그아웃은 정말 간단하다. 아래와 같이 `req.logout()`만 추가해주면 passport가 알아서 처리해준다.
 
-``` js
+```js
 export const logout = (req, res) => {
   req.logout();
   res.redirect(routes.home);
 };
 ```
-
-
 
 ## Github Login
 
@@ -388,9 +369,9 @@ passport strategies 중에서 passport-github를 사용해 github 로그인을 �
 
 ### 환경변수 추가
 
-Application 생성완료되면,  Client ID와 Client Secret는 다른사람과는 절대 공유하면 안되기 때문에, .env 환경변수 파일에 Client ID와 Client Secret을 선언했다.
+Application 생성완료되면, Client ID와 Client Secret는 다른사람과는 절대 공유하면 안되기 때문에, .env 환경변수 파일에 Client ID와 Client Secret을 선언했다.
 
-``` .env
+```
 // .env
 GITHUB_CLIENT_ID = "88d41a39a8e6af4103ff"
 GITHUB_CLIENT_SECRET = "35f3bc886295a7fada74a386a2f7a4b3c303f460"
@@ -400,7 +381,7 @@ GITHUB_CLIENT_SECRET = "35f3bc886295a7fada74a386a2f7a4b3c303f460"
 
 위에서 설정한 환경변수를 아래와 같이 새로운 전략을 만드는데 사용한다.
 
-``` js
+```js
 // passport.js
 passport.use(
   new GithubStrategy(
@@ -419,7 +400,7 @@ passport.use(
 
 함수 정의 방법은 [passport-github](http://www.passportjs.org/packages/passport-github/)에서 자세히 볼 수 있다.
 
-``` js
+```js
 // controllers/userController.js
 
 // 로그인 방식으로 github를 사용하겠다는 설정
@@ -434,7 +415,7 @@ export const githubLoginCallback = (accessToken, refreshToken, profile, cb) => {
 
 github와 github callback의 경로를 아래와 같이 설정해준다.
 
-``` js
+```js
 // routes.js
 
 // Github
@@ -451,7 +432,7 @@ const routes = {
 export default routes;
 ```
 
-``` js
+```js
 // routes/globalRouter.js
 globalRouter.get(routes.github, githubLogin);
 
@@ -463,7 +444,7 @@ globalRouter.get(
 );
 ```
 
-``` js
+```js
 // controllers/userController.js
 
 export const postGithubLogin = (req, res) => {
@@ -473,18 +454,17 @@ export const postGithubLogin = (req, res) => {
 
 ### Template
 
-``` pug
+```pug
 .social-login
     // BEM 방법론
     button.social-login--github
     	// github Routes를 설정한다.
         a(href=routes.github)
-            span 
+            span
                 i.fab.fa-github
             |  Continue with Github
     button.social-login--facebook
-        span 
+        span
             i.fab.fa-facebook
         |  Continue with Facebook
 ```
-
