@@ -105,7 +105,7 @@ print(BST.search(2)) # True
 print(BST.search(-1)) # False
 ```
 
-## 이진 탐색 트리 삭제
+## 6. 이진 탐색 트리 삭제
 
 ### 경우 1 Leaf Node 삭제
 
@@ -138,7 +138,7 @@ print(BST.search(-1)) # False
 - 해당 Node의 오른쪽 Branch가 삭제할 Node의 오른쪽 Child Node를 가리키게 함
 - 만약 해당 Node가 오른쪽 Child Node를 가지고 있었다면, 해당 Node의 본래 Parent Node의 왼쪽 Branch가 해당 Node의 오른쪽 Child Node를 가리키게 함
 
-## 이진 탐색 트리 삭제 코드 구현
+## 7. 이진 탐색 트리 삭제 코드 구현
 
 ### 삭제할 Node 탐색
 
@@ -255,7 +255,7 @@ def delete(self, value):
         self.change_node.right = self.current_node.right
 ```
 
-## 전체 코드 구현
+## 8. 전체 코드 구현
 
 ``` python
 class Node:
@@ -366,7 +366,7 @@ class NodeMgmt:
         return True        
 ```
 
-## 테스트 코드
+## 9. 테스트 코드
 
 - random 라이브러리 활용
   - random.randint(첫번째 수, 마지막 수): 첫번째 수부터 마지막 수 사이에 있는 수를 랜덤하게 선택해서 Return 한다.
@@ -403,7 +403,7 @@ for del_num in delete_nums:
         print("Delete Failed", del_num)
 ```
 
-## 이진 탐색 트리의 시잔 복잡도와 단점
+## 10. 이진 탐색 트리의 시잔 복잡도와 단점
 
 ### 시간 복잡도(탐색시)
 

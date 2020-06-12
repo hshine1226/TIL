@@ -377,94 +377,160 @@ GITHUB_CLIENT_ID = "88d41a39a8e6af4103ff"
 GITHUB_CLIENT_SECRET = "35f3bc886295a7fada74a386a2f7a4b3c303f460"
 ```
 
-### Passport Strategy 추가
+### Configure Strategy
 
-위에서 설정한 환경변수를 아래와 같이 새로운 전략을 만드는데 사용한다.
-
-```js
+``` js
 // passport.js
+// ...
 passport.use(
   new GithubStrategy(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      // routes에서 설정한 callback 경로를 지정해준다.
+      // routes.githubCallback: /auth/github/callback
       callbackURL: `http://localhost:4000${routes.githubCallback}`,
     },
+    // userController.js에 선언됨
     githubLoginCallback
   )
 );
 ```
 
-그리고 사용자가 깃허브에서 돌아왔을 때 실행되는 Callback 함수를 controller에 정의해보자.
-
-함수 정의 방법은 [passport-github](http://www.passportjs.org/packages/passport-github/)에서 자세히 볼 수 있다.
-
-```js
+``` js
 // controllers/userController.js
 
-// 로그인 방식으로 github를 사용하겠다는 설정
 export const githubLogin = passport.authenticate("github");
 
-export const githubLoginCallback = (accessToken, refreshToken, profile, cb) => {
-  console.log(accessToken, refreshToken, profile, cb);
+// 첫번째와 두번째 Parameter는 사용하지 않는 Parameter이므로 언더바(_)로 선언했다.
+export const githubLoginCallback = async (_, __, profile, cb) => {
+  // profile의 _json이라는 필드에서 받아온 값들이다.
+  const {
+    _json: { id, avatar_url: avatarUrl, name, email },
+  } = profile;
+  try {
+    // MongoDB에서 email을 기준으로 유저를 찾는다.
+    const user = await User.findOne({ email });
+    // 해당 유저가 존재한다면, 아래와 같이 id, avatar를 저장하고 callback function으로 유저를 전달한다.
+    if (user) {
+      user.githubId = id;
+      user.avatarUrl = avatarUrl;
+      user.save();
+      return cb(null, user);
+    }
+    // 해당 유저가 존재하지 않는다면, 아래와 같이 새로운 유저를 만들고, Callback Function으로 새로운 유저를 전달한다.
+    const newUser = await User.create({
+      email,
+      name,
+      githubId: id,
+      avatarUrl,
+    });
+    return cb(null, newUser);
+  } catch (error) {
+    return cb(error);
+  }
 };
 ```
 
-### Routes
+### Requests
 
-github와 github callback의 경로를 아래와 같이 설정해준다.
+위에서 Github Strategy의 설정을 완료하고 이제는 Routes, Router 설정을 해줘야 한다.
 
-```js
-// routes.js
-
+``` js
 // Github
 const GITHUB = "/auth/github";
 const GITHUB_CALLBACK = "/auth/github/callback";
 
-// Router Object
-const routes = {
-  // ...
-  github: GITHUB,
-  githubCallback: GITHUB_CALLBACK,
-};
-
-export default routes;
+github: GITHUB,
+githubCallback: GITHUB_CALLBACK,
 ```
 
-```js
-// routes/globalRouter.js
-globalRouter.get(routes.github, githubLogin);
+``` js
+// routers/globalRouter.js
 
+globalRouter.get(routes.github, githubLogin);
 globalRouter.get(
-  // 누군가 /auth/github/callback으로 간다면 아래와 같이 passport.authenticate를 실행한다.
   routes.githubCallback,
   passport.authenticate("github", { failureRedirect: "/login" }),
   postGithubLogin
 );
 ```
 
-```js
+``` pug
+// views/partials/socialLogin.pug
+.social-login
+    button.social-login--github
+        a(href=routes.github)
+            span 
+                i.fab.fa-github
+            | Continue with Github
+```
+
+## Facebook Login
+
+Facebook login 구현 방식은 Github와 Google과 매우 비슷하지만 한가지 다른 점이 있다. 그것은 보안 문제로 facebook이 까다롭기 때문에 https를 써야하는 것이다.
+
+### Facebook Developer 설정
+
+따라서 [Facebook Developer](https://developers.facebook.com/)에서 설정해야 할 것들이 있다.
+
+1. 앱을 만든다.
+2. 웹사이트 URL을 추가한다.
+3. 상단에 보면 앱 ID 옆에 개발모드와 Live모드가 있는데 이 모드를 Live 모드로 하게 되면 https를 사용해야 한다. 따라서 우리는 개발 모드로 변경한다.
+4. 앱 검수 - 내 권한 및 기능에서 email과 default를 승인 받아야 해당 정보들을 받아올 수 있다.
+
+### Scope, profileField 옵션 사용
+
+Developer 사이트에서 모든 설정을 마쳤다면 `passport.authenticate()`의 scope 옵션과 profilefield 옵션을 사용해야한다. [passport-facebook](http://www.passportjs.org/packages/passport-facebook/) 옵션을 확인할 수 있다.
+
+``` js
+// passport.js
+
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+      callbackURL: `http://localhost:4000${routes.facebookCallback}`,
+      // profileFields 옵션으로 id, name, photo, email을 요청한다.
+      profileFields: ["id", "displayName", "photos", "email"],
+    },
+    facebookLoginCallback
+  )
+);
+```
+
+``` js
 // controllers/userController.js
 
-export const postGithubLogin = (req, res) => {
-  res.send(routes.home);
-};
+export const facebookLogin = passport.authenticate("facebook", {
+  	// scope를 통해서 우리가 필요한 email의 권한을 요청한다.
+    scope: ["email"],
+});
 ```
 
-### Template
 
-```pug
-.social-login
-    // BEM 방법론
-    button.social-login--github
-    	// github Routes를 설정한다.
-        a(href=routes.github)
-            span
-                i.fab.fa-github
-            |  Continue with Github
-    button.social-login--facebook
-        span
-            i.fab.fa-facebook
-        |  Continue with Facebook
-```
+
+ 
+
+
+
+## 정리
+
+### Local 방식 인증(Authentication)
+
+Local 방식은 User name과 Password를 이용한 인증 방식으로 비교적 간단하게 구현할 수 있다.
+
+- Username과 Password를 Post 방식으로 전달
+- passport-local-mongoose가 Password가 맞는지 체크
+- Password가 맞다면 Passport는 Cookie를 생성
+
+### Github, Google, Facebook and etc 인증(Authentication)
+
+Github 방식은 Local 방식과는 다르다.
+
+- 사용자는 깃허브 인증 페이지로 이동해서 권한 승인을 한다.
+- 깃허브 인증 페이지는 /auth/gihub/callback 이라는 URL로 사용자의 정보를 보내준다.
+- Passport는 우리가 만든 githubLoginCallback 함수를 호출한다.
+- 해당 함수를 통해서 사용자의 모든 정보를 받는다.(profile)
+  - 해당 함수의 조건은 callback함수를 Return 하는것이다.
+- Callback 함수를 통해 받은 Return에 user가 존재하면, Passport는 이 user를 통해 Cookie를 만든다.
