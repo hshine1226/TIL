@@ -48,7 +48,11 @@ exports.EnglishConversation = [
   "English_Conversation/200606.md",
 ];
 
-exports.NodeJs = ["NodeJs/whenIUseNodeJs.md", "NodeJs/passport.md"];
+exports.NodeJs = [
+  "NodeJs/whenIUseNodeJs.md",
+  "NodeJs/passport.md",
+  "NodeJs/passport_changePassword",
+];
 
 exports.Express = [
   "Express/how_to_install.md",
