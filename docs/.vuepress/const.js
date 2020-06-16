@@ -82,6 +82,7 @@ exports.MongoDB = [
   "MongoDB/deleting_videos.md",
   "MongoDB/searching_videos.md",
   "MongoDB/regular_expression.md",
+  "MongoDB/populate.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];

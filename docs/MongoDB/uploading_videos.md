@@ -178,6 +178,22 @@ export const postUpload = async (req, res) => {
   req.user.save();
   res.redirect(routes.videoDetail(newVideo.id));
 };
+
+export const videoDetail = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+
+  try {
+    // populate를 이용해서 실제 다큐먼트를 가져온다.
+    // populate를 사용하지 않는다면 creator의 objectID만 가져올텐데, populate를 사용해서 실제 다큐먼트로 videos, comments, name 등을 전부 가져올 수 있다.
+    const video = await Video.findById(id).populate("creator");
+    console.log(video);
+    res.render("videoDetail", { pageTitle: video.title, video });
+  } catch (err) {
+    res.redirect(routes.home);
+  }
+};
 ```
 
 ### videoDetail.pug
