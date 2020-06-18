@@ -91,3 +91,5 @@ exports.Terminal = ["Terminal/use.md"];
 exports.Babel = ["Babel/babel.md"];
 
 exports.JavaScript = ["JavaScript/arrow_function.md", "JavaScript/webpack.md"];
+
+exports.Github = ["Github/commit_message.md"];

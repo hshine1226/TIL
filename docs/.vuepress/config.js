@@ -51,6 +51,10 @@ module.exports = {
         children: CONST.Markdown,
       },
       {
+        title: "Github[깃허브]",
+        children: CONST.Github,
+      },
+      {
         title: "Terminal[터미널]",
         children: CONST.Terminal,
       },
