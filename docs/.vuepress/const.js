@@ -53,6 +53,7 @@ exports.NodeJs = [
   "NodeJs/whenIUseNodeJs.md",
   "NodeJs/passport.md",
   "NodeJs/passport_changePassword",
+  "NodeJs/api.md",
 ];
 
 exports.Express = [
@@ -84,12 +85,17 @@ exports.MongoDB = [
   "MongoDB/searching_videos.md",
   "MongoDB/regular_expression.md",
   "MongoDB/populate.md",
+  "MongoDB/error.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
 
 exports.Babel = ["Babel/babel.md"];
 
-exports.JavaScript = ["JavaScript/arrow_function.md", "JavaScript/webpack.md"];
+exports.JavaScript = [
+  "JavaScript/arrow_function.md",
+  "JavaScript/webpack.md",
+  "JavaScript/media_element.md",
+];
 
 exports.Github = ["Github/commit_message.md"];
