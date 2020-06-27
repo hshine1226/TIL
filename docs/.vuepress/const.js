@@ -26,7 +26,11 @@ exports.Googlecloud = ["Googlecloud/how-to-use.md"];
 
 exports.Alternatives = ["Alternatives/python-version.md"];
 
-exports.Algorithm = ["Algorithm/algorithm.md", "Algorithm/time_complexity.md"];
+exports.Algorithm = [
+  "Algorithm/algorithm.md",
+  "Algorithm/time_complexity.md",
+  "Algorithm/bubble_sort.md",
+];
 
 exports.DataStructure = [
   "DataStructure/data_structure.md",
