@@ -30,6 +30,7 @@ exports.Algorithm = [
   "Algorithm/algorithm.md",
   "Algorithm/time_complexity.md",
   "Algorithm/bubble_sort.md",
+  "Algorithm/selection_sort.md",
 ];
 
 exports.DataStructure = [
@@ -100,6 +101,7 @@ exports.JavaScript = [
   "JavaScript/arrow_function.md",
   "JavaScript/webpack.md",
   "JavaScript/media_element.md",
+  "JavaScript/video_recording.md",
 ];
 
 exports.Github = ["Github/commit_message.md"];
