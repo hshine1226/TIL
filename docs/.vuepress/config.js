@@ -107,6 +107,10 @@ module.exports = {
         children: CONST.Googlecloud,
       },
       {
+        title: "AWS",
+        children: CONST.AWS,
+      },
+      {
         title: "English Conversation[영어회화]",
         children: CONST.EnglishConversation,
       },

@@ -31,6 +31,7 @@ exports.Algorithm = [
   "Algorithm/time_complexity.md",
   "Algorithm/bubble_sort.md",
   "Algorithm/selection_sort.md",
+  "Algorithm/insertion_sort.md",
 ];
 
 exports.DataStructure = [
@@ -105,3 +106,5 @@ exports.JavaScript = [
 ];
 
 exports.Github = ["Github/commit_message.md"];
+
+exports.AWS = ["AWS/s3.md"];

@@ -87,3 +87,24 @@ const stopRecording = () => {
 };
 ```
 
+## Blob Duration Bug
+
+녹화된 blob 파일의 동영상 길이가 표시가 되지 않는 버그가 발생할 수 있다. 
+
+이럴 때는 `getBlobDuration`을 통해서 동영상 길이를 받아올 수 있다.
+
+``` js
+// assets/js/videoPlayer.js
+
+async function setTotalTime() {
+  // blob을 받아오기 위해서 fetch를 사용한다.
+  const blob = await fetch(videoPlayer.src).then((response) => response.blob());
+  // blob duration을 받아온다.
+  const duration = await getBlobDuration(blob);
+  // totalTime.innerHTML = secondsToHms(videoPlayer.duration);
+  totalTime.innerHTML = secondsToHms(duration);
+  // setInterval(getCurrentTime, 1000);
+}
+
+```
+
