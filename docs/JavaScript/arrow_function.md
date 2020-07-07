@@ -17,3 +17,25 @@ hello = () => {
 }
 ```
 
+## 즉시실행하지 않게 매개변수 보내기
+
+이벤트 리스너의 콜백 함수를 통해서 매개변수를 같이 보낼 때, 함수가 즉시 실행되는 문제가 있었다.
+
+기존의 매개변수 보내는 방법은 다음과 같았다.
+
+`handleClickListener(marker)`
+
+해결 방법은 다음과 같다.
+
+`() => handleClickListener(marker)`
+
+``` js
+kakao.maps.event.addListener(marker, "click", () =>
+	handleClickListener(marker)
+);
+
+const handleClickListener = (marker) => {
+	console.log(marker);
+};
+```
+
