@@ -158,3 +158,44 @@ const getNearToilets = async (req, res) => {
 위와 같이  MongoDB의 `$near` operator를 이용해서 원하는 반경 내에 있는 위치 정보들을 받아올 수 있는 방법을 알아보았다. 
 
 더 다양한 query들을 원한다면 MongoDB의 document에서 많은 정보들을 확인할 수 있다.
+
+## 4. $box operator를 이용해서 지도 위의 사각형 범위 위치 받아오기
+
+`$box` operator를 사용하기 위해서는 사각형의 오른쪽 위, 왼쪽 아래 좌표가 필요하다.
+
+> 좌표는 [longitude, latitude] 순으로 저장되어야 한다.
+
+``` js
+{
+  <location field>: {
+     $geoWithin: {
+        $box: [
+          [ <bottom left coordinates> ],
+          [ <upper right coordinates> ]
+        ]
+     }
+  }
+}
+```
+
+
+
+``` js
+export const findBoxToilets = async (bl, ur) => {
+  try {
+    const toilets = await Toilet.find({
+      location: {
+        $geoWithin: {
+          $box: [bl, ur],
+        },
+      },
+    });
+    return toilets;
+  } catch (err) {
+    console.log(err);
+  }
+};
+```
+
+
+
