@@ -4,6 +4,10 @@
 
 이곳은 내가 배운 새로운 것들을 저장하는 저장소이다💾
 
+[Today Junhyuk Learned 구경하기](https://hshine1226.github.io/TIL/)
+
+![JUNHYUK-TIL](./JUNHYUK-TIL.png)
+
 ## 작성 규칙
 
 오늘 새로 배운 것을 다음의 규칙으로 commit 합니다.
@@ -16,6 +20,4 @@
 
 https://vuepress.vuejs.org/guide/
 
-## TIL 저장소 구경하기
 
-- [Today Junhyuk Learned](https://hshine1226.github.io/TIL/)
