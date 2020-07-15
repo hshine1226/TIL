@@ -95,6 +95,7 @@ exports.MongoDB = [
   "MongoDB/populate.md",
   "MongoDB/error.md",
   "MongoDB/geo_location.md",
+  "MongoDB/mongo_atlas.md",
 ];
 
 exports.Terminal = ["Terminal/use.md"];
