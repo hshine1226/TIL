@@ -62,6 +62,7 @@ exports.NodeJs = [
   "NodeJs/passport.md",
   "NodeJs/passport_changePassword",
   "NodeJs/api.md",
+  "NodeJs/build.md",
 ];
 
 exports.Express = [
@@ -100,7 +101,7 @@ exports.MongoDB = [
 
 exports.Terminal = ["Terminal/use.md"];
 
-exports.Babel = ["Babel/babel.md"];
+exports.Babel = ["Babel/babel.md", "Babel/error.md"];
 
 exports.JavaScript = [
   "JavaScript/arrow_function.md",
