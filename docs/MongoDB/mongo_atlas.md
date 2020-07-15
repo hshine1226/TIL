@@ -22,3 +22,10 @@ Application과 연결시키기 전에 먼저 Database user를 하나 생성한�
 MONGO_URL="mongodb+srv://<ID>:<PW>@cluster0.m6qhp.mongodb.net/youtube-clone?retryWrites=true&w=majority"
 ```
 
+## 2. IP Whitelist
+
+IP Whitelist는 어떤 IP주소가 Cluster에 접근할 수 있는지 설정하는 것이다.
+
+모든 IP에서 접근가능하게 설정하려면 
+
+`0.0.0.0/0`을 추가하면 된다.

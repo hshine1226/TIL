@@ -114,6 +114,7 @@ module.exports = {
         title: "English Conversation[영어회화]",
         children: CONST.EnglishConversation,
       },
+      { title: "Heroku[헤로쿠]", children: CONST.Heroku },
     ],
   },
 };

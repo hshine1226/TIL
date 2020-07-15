@@ -113,3 +113,5 @@ exports.JavaScript = [
 exports.Github = ["Github/commit_message.md"];
 
 exports.AWS = ["AWS/s3.md"];
+
+exports.Heroku = ["Heroku/deploying.md"];
