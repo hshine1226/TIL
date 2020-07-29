@@ -20,7 +20,7 @@ exports.Flask = [
 
 exports.Html = ["Html/form-tag.md", "Html/input-tag.md"];
 
-exports.CSS = ["CSS/bem.md"];
+exports.CSS = ["CSS/bem.md", "CSS/align_text.md"];
 
 exports.Googlecloud = ["Googlecloud/how-to-use.md"];
 
