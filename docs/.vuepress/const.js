@@ -109,6 +109,10 @@ exports.JavaScript = [
   "JavaScript/webpack.md",
   "JavaScript/media_element.md",
   "JavaScript/video_recording.md",
+  "JavaScript/destructuring.md",
+  "JavaScript/spread_operator.md",
+  "JavaScript/map.md",
+  "JavaScript/filter.md"  
 ];
 
 exports.Github = ["Github/commit_message.md"];
