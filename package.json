@@ -2,6 +2,7 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
+    "predeploy": "build",
     "deploy": "git push -f git@github.com:hshine1226/TIL.git master:gh-pages"
   },
   "devDependencies": {
