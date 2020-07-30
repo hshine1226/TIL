@@ -17,6 +17,16 @@ hello = () => {
 }
 ```
 
+## default parameter
+
+parameter에 어떤 값도 들어오지 않았을 때를 대비해서 아래와 같이 default value를 줄 수 있다.
+
+이 기능은 arrow function에서 뿐만 아니라 일반 function에서도 사용 가능하다.
+
+``` js 
+const sayHello = (name = "JUNHYUK") => "Hello " + name;
+```
+
 ## 즉시실행하지 않게 매개변수 보내기
 
 이벤트 리스너의 콜백 함수를 통해서 매개변수를 같이 보낼 때, 함수가 즉시 실행되는 문제가 있었다.
