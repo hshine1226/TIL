@@ -112,8 +112,10 @@ exports.JavaScript = [
   "JavaScript/destructuring.md",
   "JavaScript/spread_operator.md",
   "JavaScript/map.md",
-  "JavaScript/filter.md"  
+  "JavaScript/filter.md",
 ];
+
+exports.React = ["React/create_react_app.md", "React/styled_components.md"];
 
 exports.Github = ["Github/commit_message.md"];
 

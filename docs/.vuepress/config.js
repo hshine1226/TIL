@@ -83,6 +83,10 @@ module.exports = {
         children: CONST.JavaScript,
       },
       {
+        title: "React[리액트]",
+        children: CONST.React,
+      },
+      {
         title: "Flask[플라스크]",
         children: CONST.Flask,
       },
