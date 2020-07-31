@@ -115,7 +115,11 @@ exports.JavaScript = [
   "JavaScript/filter.md",
 ];
 
-exports.React = ["React/create_react_app.md", "React/styled_components.md"];
+exports.React = [
+  "React/create_react_app.md",
+  "React/styled_components.md",
+  "React/withRouter.md",
+];
 
 exports.Github = ["Github/commit_message.md"];
 
