@@ -28,4 +28,6 @@ api.get("tv/popular");
 
 api를 호출할 때 반복되는 요소들이 많다. 예를들어서 baseUrl, api_key, language 등...
 
+이런 작업을 기존의 fetch를 통해 하게 된다면 정말 비효율적일 것이다...
+
 하지만 우리는 axios를 사용하면 이런 반복되는 요소들의 중복을 피할 수 있다.
