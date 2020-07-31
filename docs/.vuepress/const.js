@@ -64,6 +64,7 @@ exports.NodeJs = [
   "NodeJs/passport_changePassword",
   "NodeJs/api.md",
   "NodeJs/build.md",
+  "NodeJs/axios.md",
 ];
 
 exports.Express = [
