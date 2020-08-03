@@ -122,7 +122,7 @@ exports.React = [
   "React/withRouter.md",
 ];
 
-exports.Github = ["Github/commit_message.md"];
+exports.Github = ["Github/commit_message.md", "Github/usage.md"];
 
 exports.AWS = ["AWS/s3.md"];
 
