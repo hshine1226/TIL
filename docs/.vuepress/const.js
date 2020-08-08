@@ -127,3 +127,5 @@ exports.Github = ["Github/commit_message.md", "Github/usage.md"];
 exports.AWS = ["AWS/s3.md"];
 
 exports.Heroku = ["Heroku/deploying.md"];
+
+exports.Network = ["Network/rest_api.md"];

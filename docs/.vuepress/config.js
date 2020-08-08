@@ -115,10 +115,14 @@ module.exports = {
         children: CONST.AWS,
       },
       {
+        title: "Network",
+        children: CONST.Network,
+      },
+      { title: "Heroku[헤로쿠]", children: CONST.Heroku },
+      {
         title: "English Conversation[영어회화]",
         children: CONST.EnglishConversation,
       },
-      { title: "Heroku[헤로쿠]", children: CONST.Heroku },
     ],
   },
 };
