@@ -101,7 +101,7 @@ exports.MongoDB = [
   "MongoDB/mongo_atlas.md",
 ];
 
-exports.Terminal = ["Terminal/use.md"];
+exports.Terminal = ["Terminal/use.md", "Terminal/shell.md"];
 
 exports.Babel = ["Babel/babel.md", "Babel/error.md"];
 
