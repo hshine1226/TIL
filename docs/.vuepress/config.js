@@ -119,6 +119,7 @@ module.exports = {
         children: CONST.Network,
       },
       { title: "Heroku[헤로쿠]", children: CONST.Heroku },
+      { title: "Netlify", children: CONST.Netlify },
       {
         title: "English Conversation[영어회화]",
         children: CONST.EnglishConversation,

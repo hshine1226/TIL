@@ -130,4 +130,6 @@ exports.AWS = ["AWS/s3.md"];
 
 exports.Heroku = ["Heroku/deploying.md"];
 
+exports.Netlify = ["Netlify/deploy.md"];
+
 exports.Network = ["Network/rest_api.md"];
