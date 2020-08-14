@@ -114,12 +114,14 @@ exports.JavaScript = [
   "JavaScript/spread_operator.md",
   "JavaScript/map.md",
   "JavaScript/filter.md",
+  "JavaScript/optional_chaining.md",
 ];
 
 exports.React = [
   "React/create_react_app.md",
   "React/styled_components.md",
   "React/withRouter.md",
+  "React/useParams.md",
 ];
 
 exports.Github = ["Github/commit_message.md", "Github/usage.md"];
