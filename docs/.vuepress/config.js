@@ -87,6 +87,10 @@ module.exports = {
         children: CONST.React,
       },
       {
+        title: "Redux[리덕스]]",
+        children: CONST.Redux,
+      },
+      {
         title: "Flask[플라스크]",
         children: CONST.Flask,
       },

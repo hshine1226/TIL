@@ -124,6 +124,8 @@ exports.React = [
   "React/useParams.md",
 ];
 
+exports.Redux = ["Redux/redux.md"];
+
 exports.Github = ["Github/commit_message.md", "Github/usage.md"];
 
 exports.AWS = ["AWS/s3.md"];
