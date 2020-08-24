@@ -87,7 +87,7 @@ module.exports = {
         children: CONST.React,
       },
       {
-        title: "Redux[리덕스]]",
+        title: "Redux[리덕스]",
         children: CONST.Redux,
       },
       {
