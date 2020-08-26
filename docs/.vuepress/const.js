@@ -84,6 +84,7 @@ exports.Express = [
   "Express/html_form.md",
   "Express/mixins.md",
   "Express/cors.md",
+  "Express/cookie_issue",
 ];
 
 exports.MongoDB = [
