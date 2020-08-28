@@ -33,6 +33,7 @@ exports.Algorithm = [
   "Algorithm/selection_sort.md",
   "Algorithm/insertion_sort.md",
   "Algorithm/space_complexity.md",
+  "Algorithm/baekjoon.md",
 ];
 
 exports.DataStructure = [
