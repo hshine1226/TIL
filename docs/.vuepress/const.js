@@ -118,6 +118,7 @@ exports.JavaScript = [
   "JavaScript/map.md",
   "JavaScript/filter.md",
   "JavaScript/optional_chaining.md",
+  "JavaScript/map_forEach.md",
 ];
 
 exports.React = [
