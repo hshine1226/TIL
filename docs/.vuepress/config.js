@@ -125,6 +125,10 @@ module.exports = {
       { title: "Heroku[헤로쿠]", children: CONST.Heroku },
       { title: "Netlify", children: CONST.Netlify },
       {
+        title: "Interview[면접]",
+        children: CONST.Interview,
+      },
+      {
         title: "English Conversation[영어회화]",
         children: CONST.EnglishConversation,
       },

@@ -139,3 +139,5 @@ exports.Heroku = ["Heroku/deploying.md"];
 exports.Netlify = ["Netlify/deploy.md"];
 
 exports.Network = ["Network/rest_api.md"];
+
+exports.Interview = ["Interview/interview.md"];
