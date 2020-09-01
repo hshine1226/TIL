@@ -364,3 +364,64 @@ Procedural = functions = routine = subroutine
 2. 객체의 인자로 넘길 수 있어야 한다.
 3. 객체의 리턴값으로 리턴할 수 있어야 한다.
 
+
+
+## Javascript & Jquery
+
+Javascript는 웹 브라우저에서 작동하는 스크립트이다. 주로 서버사이드 언어가 아닌 클라이언트 언어로 사용된다.
+
+Jquery는 **Javascript 라이브러리**이다. Javascript로 빈번하게 사용되는 기능들을 약간 다른 형식으로 사용하게 만든 라이브러리 입니다.
+
+모던 자바스크립트의 시대가 열린 이후로는 많은 개발자들이 jQuery를 사용하고 싶어하지 않는다.
+
+jQuery가 아무리 간편하다고 해도 대부분의 우리가 필요한 기능들에 비해 너무 크기가 비대하다. 
+
+jQuery는 개발자들이 DOM(Document Object Model) 조작을 좀 더 편리하게 할 수 있도록 도와주는 기능들을 갖고 있다.
+
+Vanilla Javascript를 사용했을 때와 jQuery를 사용했을 때의 퍼포먼스가 확연히 차이가 난다.
+
+
+
+## RDBMS
+
+### DBMS란?
+
+DBMS(DataBase Management System)는 데이터베이스를 관리하는 시스템이다.
+
+### Database란?
+
+- 데이터들이 모여 이루는 데이터 단위로 데이터를 저장, 유지보수하고 이를 검색하는 시스템
+- CRUD
+- 대량의 데이터를 처리하는 시스템
+
+### RDBMS란?
+
+RDBMS는 관계형 데이터 모델에 기초를 둔 데이터베이스이다. 관계형 데이터 모델이란 데이터를 구성하는데 필요한 방법 중 하나로써 **모든 데이터를 2차원의 테이블 형태로 표현합니다.**
+
+RDB는 **데이터의 독립성이 높고**, **고수준의 데이터 조작언어(DML)를 사용**하여 결합, 제약, 투영 등의 관계 조작에 의해 비약적으로 표현능력을 높일 수 있습니다.
+
+- 모든 데이터를 **2차원 테이블로 표현**
+- 테이블은 **row**(record, tuple)와 **column**(field, item)으로 이루어진 기본 데이터 저장 단위
+- **상호 관련성**을 가진 **테이블의 집합**
+- **확장이 용이**하다는 장점을 가짐
+- ER(Entity Relationship) 모델에 따라서 데이터베이스를 모델링하며, 데이터베이스는 하나 이상의 테이블로 구성됨. ER 모델에서는 Entity를 기반으로 테이블이 만들어짐
+
+### RDBMS의 구조
+
+Column = Field = Attribute
+
+Row = Record = Tuple
+
+### SQL란?
+
+- RDBMS에서 데이터를 관리하기 위해서 사용되는 표준 프로그래밍 언어
+- SQL은 크게 세 가지 종류로 나뉜다.
+  - DDL(Data Definition Language): TABLE, INDEX 등의 개체를 만들고 관리하는데 사용되는 명령어
+    - CREATE, ALTER, DROP
+  - DML(Data Manipulation Language): 데이터의 CRUD를 위해 사용되는 명령어
+    - INSERT, UPDATE, DELETE, SELECT
+  - DCL(Data Control Language): 데이터 핸들링 권한 설정, 데이터 무결성 처리 등 수행
+    - GRANT, BEGIN, COMMIT, ROLLBACK
+
+
+
