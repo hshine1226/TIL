@@ -178,3 +178,37 @@ for _ in range(testCase):
 
 ### 풀이
 
+이 문제는 스택의 활용법을 증명할 수 있는 문제였다. 처음에는 스택 하나로만 구현하려고 했었는데, 그러다 보니까 커서의 위치를 저장하기 위한 변수도 따로 관리해야하고 구현하기가 까다로웠다.
+
+하지만 생각을 조금 바꿔서 스택을 두개 사용한다면 다음과 같이 알고리즘을 구현할 수 있다.
+
+1. 데이터 삽입 시, 오른쪽 스택에 push
+2. 데이터 삭제 시, 오른쪽 스택의 pop
+3. 커서 왼쪽 이동 시, 왼쪽 스택 pop -> 오른쪽 스택 push
+4. 커서 오른쪽 이동 시, 오른쪽 스택 pop -> 왼쪽 스택 push
+
+``` python
+testCase = eval(input())
+
+for _ i in range(testCase):
+    string = list(input())
+    leftStack = list()
+    rightStack = list()
+    
+    for word in string:
+        if word == "<":
+            if leftStack:
+                rightStack.append(leftStack.pop())
+		elif word == ">":
+            if rightStack:
+                leftStack.append(rightStack.pop())
+		elif word == "-":
+            if leftStack:
+                leftStack.pop()
+		else:
+            leftStack.append(word)
+            
+	leftStack.extend(reversed(rightStack))
+    print("".join(leftStack))
+```
+
