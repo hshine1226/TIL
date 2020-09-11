@@ -141,3 +141,5 @@ exports.Netlify = ["Netlify/deploy.md"];
 exports.Network = ["Network/rest_api.md"];
 
 exports.Interview = ["Interview/interview.md"];
+
+exports.Docker = ["Docker/docker.md"];
