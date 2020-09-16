@@ -136,6 +136,10 @@ module.exports = {
         title: "Docker[도커]",
         children: CONST.Docker,
       },
+      {
+        title: "Colab[코랩]",
+        children: CONST.Colab,
+      }
     ],
   },
 };
