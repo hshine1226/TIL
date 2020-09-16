@@ -139,6 +139,10 @@ module.exports = {
       {
         title: "Colab[코랩]",
         children: CONST.Colab,
+      },
+      {
+        title: "Postgresql",
+        children: CONST.Posgresql
       }
     ],
   },

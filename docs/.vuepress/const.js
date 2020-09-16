@@ -145,3 +145,5 @@ exports.Interview = ["Interview/interview.md"];
 exports.Docker = ["Docker/docker.md"];
 
 exports.Colab = ["Colab/colab.md"]
+
+exports.Posgresql = ["Postgresql/aggregate_functions.md", "Postgresql/json_creation_functions.md"]
