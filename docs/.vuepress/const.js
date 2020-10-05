@@ -58,7 +58,8 @@ exports.EnglishConversation = [
   "English_Conversation/200710.md",
   "English_Conversation/200718.md",
   "English_Conversation/200929.md",
-  "English_Conversation/201003.md"
+  "English_Conversation/201003.md",
+  "English_Conversation/201005.md"
 ];
 
 exports.NodeJs = [
