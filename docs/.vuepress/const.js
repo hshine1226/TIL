@@ -59,7 +59,8 @@ exports.EnglishConversation = [
   "English_Conversation/200718.md",
   "English_Conversation/200929.md",
   "English_Conversation/201003.md",
-  "English_Conversation/201005.md"
+  "English_Conversation/201005.md",
+  "English_Conversation/201010.md",
 ];
 
 exports.NodeJs = [
@@ -147,6 +148,11 @@ exports.Interview = ["Interview/interview.md"];
 
 exports.Docker = ["Docker/docker.md"];
 
-exports.Colab = ["Colab/colab.md"]
+exports.Colab = ["Colab/colab.md"];
 
-exports.Posgresql = ["Postgresql/aggregate_functions.md", "Postgresql/json_creation_functions.md", "Postgresql/postgis.md", "Postgresql/sql.md"]
+exports.Posgresql = [
+  "Postgresql/aggregate_functions.md",
+  "Postgresql/json_creation_functions.md",
+  "Postgresql/postgis.md",
+  "Postgresql/sql.md",
+];
