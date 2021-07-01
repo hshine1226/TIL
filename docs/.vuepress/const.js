@@ -131,6 +131,8 @@ exports.JavaScript = [
   "JavaScript/map_forEach.md",
 ];
 
+exports.TypeScript = ["TypeScript/basic_types.md"];
+
 exports.React = [
   "React/create_react_app.md",
   "React/styled_components.md",

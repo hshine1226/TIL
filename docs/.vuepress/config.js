@@ -83,6 +83,10 @@ module.exports = {
         children: CONST.JavaScript,
       },
       {
+        title: "TypeScript[타입스크립트]",
+        children: CONST.TypeScript,
+      },
+      {
         title: "React[리액트]",
         children: CONST.React,
       },
@@ -142,8 +146,8 @@ module.exports = {
       },
       {
         title: "Postgresql",
-        children: CONST.Posgresql
-      }
+        children: CONST.Posgresql,
+      },
     ],
   },
 };
