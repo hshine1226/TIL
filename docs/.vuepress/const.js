@@ -131,7 +131,10 @@ exports.JavaScript = [
   "JavaScript/map_forEach.md",
 ];
 
-exports.TypeScript = ["TypeScript/basic_types.md"];
+exports.TypeScript = [
+  "TypeScript/basic_types.md",
+  "TypeScript/type_assertions.md",
+];
 
 exports.React = [
   "React/create_react_app.md",
