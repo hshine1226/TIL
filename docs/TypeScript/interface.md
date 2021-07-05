@@ -131,3 +131,68 @@ p1.hello() // 안녕하세요! Mark입니다.
 p2.hello() // 안녕하세요! Mark입니다.
 p3.hello() // 안녕하세요! 입니다.
 ```
+
+## class implements interface
+
+- class를 interface로 implements
+
+```Typescript
+interface IPerson{
+    name: string;
+    age?: number;
+    hello(): void;
+}
+
+class Person implements IPerson {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    hello(): void {
+        console.log(`안녕하세요! ${this.name}입니다.`)
+    }
+}
+
+const person = new Person('Mark')
+person.hello(); // 안녕하세! Mark입니다.
+```
+
+## interface extends interface
+
+- 인터페이스를 상속받는 인터페이스
+
+```Typescript
+interface Person {
+    name: string;
+    age?: number;
+}
+
+interface Korean extends Person {
+    city: string;
+}
+
+const k: Korean = {
+    name: '최준혁',
+    city: '서울'
+}
+```
+
+## function interface
+
+- 많이 사용하지는 않는듯?
+
+```Typescript
+interface HelloPerson {
+    (name: string, age?: number): void;
+}
+
+let helloPerson: HelloPerson = function (name: string) {
+    console.log(`안녕하세요! ${name}입니다.`)
+}
+
+helloPerson('Mark') // 안녕하세요! Mark입니다.
+
+// 함수의 타입 체크는 할당할 때가 아닌 사용할 때 한다!!
+```
