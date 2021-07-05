@@ -134,6 +134,7 @@ exports.JavaScript = [
 exports.TypeScript = [
   "TypeScript/basic_types.md",
   "TypeScript/type_assertions.md",
+  "TypeScript/interface.md",
 ];
 
 exports.React = [
