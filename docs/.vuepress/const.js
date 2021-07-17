@@ -136,6 +136,7 @@ exports.TypeScript = [
   "TypeScript/type_assertions.md",
   "TypeScript/interface.md",
   "TypeScript/indexable_types.md",
+  "TypeScript/class.md",
 ];
 
 exports.React = [
