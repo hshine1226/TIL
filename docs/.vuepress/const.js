@@ -138,6 +138,7 @@ exports.TypeScript = [
   "TypeScript/interface.md",
   "TypeScript/indexable_types.md",
   "TypeScript/class.md",
+  "TypeScript/class_2.md",
 ];
 
 exports.React = [
