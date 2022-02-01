@@ -140,6 +140,7 @@ exports.TypeScript = [
   "TypeScript/class.md",
   "TypeScript/class_2.md",
   "TypeScript/generic.md",
+  "TypeScript/generic_2.md",
 ];
 
 exports.React = [
